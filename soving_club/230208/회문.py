@@ -15,13 +15,11 @@ for tc in range(1, Test_case + 1):
         while start < n - m + 1:
             word_list = ''.join(col_list[j])
             if start == 0:
-                # print(row_list[j][start: start + m], row_list[j][start + m - 1::-1])
                 if row_list[j][start: start + m] == row_list[j][start + m - 1::-1]:
                     result = row_list[j][start: start + m]
                 elif word_list[start: start + m] == word_list[start + m - 1::-1]:
                     result = word_list[start: start + m]
             else:
-                # print(row_list[j][start: start + m], row_list[j][start + m - 1:start-1:-1])
                 if row_list[j][start: start + m] == row_list[j][start + m - 1:start - 1:-1]:
                     result = row_list[j][start: start + m]
                 elif word_list[start: start + m] == word_list[start + m - 1:start - 1:-1]:
