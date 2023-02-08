@@ -106,7 +106,8 @@
 #             if 0 <= ni < N and 0 <= nj < N:
 #                 print(i, j, ni, nj)
 
-
+3
+40+480
 # N = 3
 # for i in range(N):
 #     for j in range(N):

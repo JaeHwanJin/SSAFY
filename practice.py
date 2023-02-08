@@ -1,23 +1,11 @@
 from pprint import pprint
+import sys
 
 '''
 
-
-
 '''
-N = int(input())
-n = N % 8
+a = int(input())
 
-if n == 1:
-    pass
-elif n == 2 or n == 8:
-    pass
-elif n == 3 or n == 7:
-    pass
-elif n == 4 or n == 6:
-    pass
-elif n == 5:
-    pass
 '''
 
 예제 입력 1 
