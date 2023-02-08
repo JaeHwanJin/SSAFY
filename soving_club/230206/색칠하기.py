@@ -38,38 +38,26 @@ color = 1 (빨강), color = 2 (파랑)
 #                 count += 1
 #     print(f'#{i} {count}')
 
-# T = int(input())
-#
-# for tc in range(1, T + 1):
-#     Arr = []
-#     grid = [[0 for i in range(10)] for j in range(10)]
-#     # for i in range(10):
-#     #     arr = []
-#     #     for j in range(10):
-#     #         arr.append(0)
-#     #     Arr.append(arr)
-#     N = int(input())
-#     count = 0
-#     for j in range(N):
-#         r1, c1, r2, c2, color = map(int, input().split())
-#         for x in range(r1, r2 + 1):
-#             for y in range(c1, c2 + 1):
-#                 grid[x][y] += 1
-#
-#     for z in grid:
-#         for q in z:
-#             if q >= 2:
-#                 count += 1
-#     print(f'#{tc} {count}')
+T = int(input())
 
-N = 3
-grid = [[0 for i in range(N)]for j in range(N)]
+for tc in range(1, T + 1):
+    Arr = []
+    grid = [[0 for i in range(10)] for j in range(10)]
+    # for i in range(10):
+    #     arr = []
+    #     for j in range(10):
+    #         arr.append(0)
+    #     Arr.append(arr)
+    N = int(input())
+    count = 0
+    for j in range(N):
+        r1, c1, r2, c2, color = map(int, input().split())
+        for x in range(r1, r2 + 1):
+            for y in range(c1, c2 + 1):
+                grid[x][y] += 1
 
-for x in range(N):
-    for y in range(N):
-        grid[x][y] += 1
-print(grid)
-
-
-
-
+    for z in grid:
+        for q in z:
+            if q >= 2:
+                count += 1
+    print(f'#{tc} {count}')

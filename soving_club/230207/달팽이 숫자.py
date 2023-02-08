@@ -42,14 +42,29 @@ N이 4일 경우,
 10 9 8 7
 '''
 
-N = 3
-grid = [[0 for i in range(N)] for j in range(N)]
-print(grid)
-cnt = 0
-arr = []
+Test_case = int(input())
 
-# [0, 1][1, 0][0, -1][-1, 0]
-#   우     하    좌      상
+for tc in range(1, Test_case + 1):
+    N = int(input())
+    grid = [[0 for i in range(N)] for i in range(N)]  # 2차원 배열 생성
+    row = 0  # 행
+    col = -1  # 열 / 달팽이모양으로 숫자가 증가하려면 첫 이동을 열부터 시작해야하기 때문에(move를 더해주면서 시작) -1부터 시작
+    move = 1  # 이동
+    cnt = 1  # 인덱스에 채워질 숫자
+    while N > 0:
+        for i in range(N):  # N의 범위만큼 열 증가
+            col += move
+            grid[row][col] = cnt
+            cnt += 1
 
+        N -= 1  # 한 줄 채워졌기때문에
 
+        for i in range(N):
+            row += move
+            grid[row][col] = cnt
+            cnt += 1
 
+        move *= -1  # 달팽이모양으로 숫자를 증가시키려면 열 +1 행 +1 열 -1 행 -1 순이기때문에
+    print(f'#{tc}')
+    for i in grid:
+        print(*i)
