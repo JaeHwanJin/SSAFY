@@ -33,5 +33,5 @@ for tc in range(1, Test_case + 1):
                 new_wl.append(j)
 
     print(tn)
-    print(*new_wl)
+    
 

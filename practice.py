@@ -1,44 +1,23 @@
 from pprint import pprint
 import sys
 
-'''
+row1, col1 = map(int, input().split())
+row2, col2 = map(int, input().split())
+row3, col3 = map(int, input().split())
+x = 0
+y = 0
+if row1 == row2:
+    x = row3
+elif row2 == row3:
+    x = row1
+else:
+    x = row2
 
-'''
-a = int(input())
+if col1 == col2:
+    y = col3
+elif col2 == col3:
+    y = col1
+else:
+    y = col2
 
-'''
-
-예제 입력 1 
-31 41 59
-예제 출력 1 
-OK
-
-예제 입력 2 
-1 2 3
-예제 출력 2 
-Soongsil
-
-예제 입력 3 
-19 8 9
-예제 출력 3 
-Korea
-
-예제 입력 4 
-45 33 21
-예제 출력 4 
-Hanyang
-'''
-
-'''
-[입력]
-9 0 0 18 0 0
-9 0 1 18 0 0
-12 14 52 12 15 30
-'''
-
-'''
-[출력]
-9 0 0
-8 59 59
-0 0 38
-'''
+print(x, y)
