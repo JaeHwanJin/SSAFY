@@ -45,3 +45,44 @@ BBBBBBBCCC
 CC
 '''
 
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     Str = ''
+#     lst = []
+#     Sum = 0
+#     start = 0
+#     end = 10
+#     for i in range(N):
+#         s, n = map(str, input().split())
+#         n = int(n)
+#         for j in range(n):
+#             lst.append(s)
+#     print(Sum)
+#     print(lst)
+#     print(f'#{tc}')
+#     for k in range(int(Sum+1)):
+#         print(lst[start:e   nd:], end='')
+#         start += 10
+#         end += 10
+
+T = int(input())
+
+for tc in range(1, T + 1):
+    N = int(input())
+    Str = ''
+    num = 0
+    start = 0
+    end = 10
+    for i in range(N):
+        s, n = map(str, input().split())
+        n = int(n)
+        Str += s * n
+        num += n
+    NUM = num//10 +1
+    print(f'#{tc}')
+    for i in range(NUM):
+        print(Str[start:end])
+        start += 10
+        end += 10
