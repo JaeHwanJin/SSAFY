@@ -1,7 +1,10 @@
-from pprint import pprint
-import sys
+def recursive(data):
+    if data < 0:
+        print("끝!")
+    else:
+        print(data)
+        recursive(data - 1)
+        print("returned", data)
 
-N = int(input())
 
-for i in range(1, N + 1):
-    print('*' * i + )
+recursive(4)
