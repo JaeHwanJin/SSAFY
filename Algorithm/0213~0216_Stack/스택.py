@@ -44,7 +44,7 @@ def check(string):
         if ch == '(':
             # '(': 스택에 push
             push('(')
-        else:  # elif ch == ')':
+        elif ch == ')':
             # ')': pop '(' <-> ')'
             if pop() == '(':
                 continue
@@ -55,9 +55,11 @@ def check(string):
     return False
 
 
+
 for _ in range(4):
     string = input().replace(' ', '')
     if check(string):
         print('SUCCESS')
     else:
         print('FAIL')
+
