@@ -14,3 +14,4 @@ for i in range(E):
 
     adjl[v1].append(v2)
     adjl[v2].append(v1)
+d
