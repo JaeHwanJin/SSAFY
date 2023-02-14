@@ -21,3 +21,54 @@
 #2 21
 #3 85
 '''
+
+
+testCase = int(input())
+
+
+# 재귀함수로 작성
+def paper(N):
+    if N % 10 == 0:
+        if N == 10:
+            return 1  # N이 10일때 붙이는 방법은 1개
+        elif N == 20:
+            return 3  # N이 20일때 붙이는 방법은 3개
+        else:
+            return paper(N - 10) + (2 * paper(N - 20))  # 같은 경우는 제외 해주기 때문에 2를 곱한다.
+            # 최소범위의 값은 반환하고 최소범위만 남을때까지 반복
+
+
+for tc in range(1, testCase + 1):
+    N = int(input())
+    result = paper(N)
+    print(f'#{tc} {result}')
+
+# memoization으로 작성
+
+memo = [0] * 301
+memo[10] = 1
+memo[20] = 3
+
+
+def paper2(N):
+    # 기저조건
+    if memo[N]:
+        return memo[N]
+    # 재귀호출 (점화식 코드)
+    memo[N] = paper(N - 10) + (2 * paper(N - 20))
+    return memo[N]
+
+
+# DP방식 (함수 호출을 해서 재귀적으로 푸는 부분을 제거 -> 반복문)
+
+dp = [0] * 301
+# 기저조건
+dp[10] = 1
+dp[20] = 3
+
+# 반복문을 사용해서, 작은 부분 -> 큰 부분으로 올라간다
+for i in range(30, 301, 10):
+    dp[i] = dp[i - 10] + 2 * dp[i - 20]
+
+# 250에 대한 만들 수 있는 갯수들을  출력해라
+print(dp[50])
