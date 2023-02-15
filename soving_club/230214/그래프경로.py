@@ -83,9 +83,9 @@ E개의 줄 이후에는 경로의 존재를 확인할 출발 노드 S와 도착
 
 
 def check(arr, sl):
-    stack.append(sl)
+    stack.append(sl)    # 빈 값이 되면 안되기때문에 시작점 추가
     while stack:
-        current = stack.pop()
+        current = stack.pop()   # 시작점으로부터 시작
         visited.append(current)
         for i in arr[current]:
             if i not in visited:
@@ -96,14 +96,14 @@ T = int(input())
 
 for tc in range(1, T + 1):
     node, line = map(int, input().split())
-    arr = [[] for _ in range(node + 1)]
+    arr = [[] for _ in range(node + 1)] # 노드가 1부터 시작하기 때문에 범위에 +1을 해준다.
 
     for i in range(line):
         sl, el = map(int, input().split())
-        arr[sl].append(el)
+        arr[sl].append(el)  # 리스트 arr에 각 노드마다 연결 된 노드 추가
     S, G = map(int, input().split())
-    visited = []
-    stack = []
+    visited = []    # 방문한 노드를 추가 할 리스트
+    stack = []      # 방문한 노드를 구할때 사용 할 리스트
 
     check(arr, S)
 
@@ -111,7 +111,6 @@ for tc in range(1, T + 1):
         print(f'#{tc} 1')
     else:
         print(f'#{tc} 0')
-
 
 '''
 def dfs(graph, visited, start, end):
@@ -160,3 +159,15 @@ for tc in range(1, T + 1):
     else:
         print(f'#{tc} 0')
 '''
+
+'''
+6 5
+1 4
+1 3
+2 3
+2 5
+4 6
+1 6
+'''
+
+
