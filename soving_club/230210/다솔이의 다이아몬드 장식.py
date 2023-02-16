@@ -36,5 +36,33 @@ APPLE   // 두번째 TC의 문자열
 
 T = int(input())
 
-for tc in range(1, T+1):
-    s = input()
+start = end = ['.', '.', '#', '.', '.']
+
+second = fourth = ['.', '#', '.', '#', '.']
+
+third = ['#', '.', '', '.', '#']
+storage = ''
+for tc in range(1, 1 + T):
+    string = input().strip()
+    result = []
+    # 글자 수만큼 first, second, third, fourth 를 반복적으로 출력할 리스트에 추가합니다.
+    for i in range(len(string)):
+        result.append(start)
+        result.append(second)
+        tmp = third[:]
+        # 기존값을 출력할 글자로 대체합니다.
+        tmp[2] = string[i]
+        result.append(tmp)
+        result.append(fourth)
+    # 마지막에 뚜껑을 닫아줍니다.
+    result.append(end)
+
+    output = [[0] * len(result) for _ in range(len(result[0]))]
+    # 아래로 길게 늘어진 데이터를 왼쪽으로 90도 회전에서 저장
+    for r in range(len(result)):
+        for c in range(len(result[0])):
+            output[-c - 1][r] = result[r][c]
+
+    for i in range(len(output)):
+        storage += ''.join(output[i]) + '\n'
+print(storage)

@@ -98,34 +98,64 @@ NxN 크기의 미로에서 출발지에서 목적지에 도착하는 경로가 �
 # print(result)
 
 
+# def check(x, y):
+#     miro[x][y] = 1
+#     for i in range(4):
+#         nx = x + dx[i]
+#         ny = y + dy[i]
+#         if 0 <= nx < N and 0 <= ny < N:
+#             if miro[nx][ny] == '0':
+#                 check(nx, ny)
+#             elif miro[nx][ny] == '3':
+#                 global ans
+#                 ans = 1
+#                 return
+#
+#
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     miro = [list(input()) for i in range(N)]
+#     dx = [0, 0, -1, 1]
+#     dy = [-1, 1, 0, 0]
+#     ans = 0
+#     for i in range(N):
+#         for j in range(N):
+#             if miro[i][j] == '2':
+#                 sx = i
+#                 sy = j
+#
+#     ans = 0
+#     check(sx, sy)
+#     print(f'#{tc} {ans}')
+
+
 def check(x, y):
     miro[x][y] = 1
+
     for i in range(4):
-        nx = x + dx[i]
-        ny = y + dy[i]
-        if 0 <= nx < N and 0 <= ny < N:
-            if miro[nx][ny] == '0':
-                check(nx, ny)
-            elif miro[nx][ny] == '3':
-                global ans
-                ans = 1
-                return
+        new_x = x + dx[i]
+        new_y = y + dy[i]
+        if 0 <= new_x < N and 0 <= new_y < N:
+            if miro[new_x][new_x] == '0':
+                check(new_x, new_y)
+            elif miro[new_x][new_x] == '3':
+                return 1
 
 
 T = int(input())
 
 for tc in range(1, T + 1):
     N = int(input())
-    miro = [list(input()) for i in range(N)]
+    miro = [list(map(int, input())) for _ in range(N)]
     dx = [0, 0, -1, 1]
     dy = [-1, 1, 0, 0]
-    ans = 0
-    for i in range(N):
-        for j in range(N):
-            if miro[i][j] == '2':
-                sx = i
-                sy = j
+    for x in range(N):
+        for y in range(N):
+            if miro[x][y] == 2:
+                si = x
+                sj = y
 
-    ans = 0
-    check(sx, sy)
-    print(f'#{tc} {ans}')
+
+    print(f'#{tc} {check(si, sj)}')

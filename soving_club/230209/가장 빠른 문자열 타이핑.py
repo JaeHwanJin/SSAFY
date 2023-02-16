@@ -30,6 +30,25 @@ asakusa sa	//Test Case의 개수
 # Test_case = int(input())
 #
 # for tc in range(1, Test_case + 1):
+#     A, B = map(str, input().split())
+#     result = len(A.replace(B, 'x'))
+#     print(f'#{tc} {result}')
 
+Test_case = int(input())
 
-# split 사용 해서
+for tc in range(1, Test_case + 1):
+    A, B = map(str, input().split())
+    i = 0
+    cnt = 0
+    while i < len(A):
+        if A[i] == B[0]:
+            if A[i:i + len(B)] == B:
+                cnt += 1
+                i += len(B)
+            else:
+                i += 1
+                cnt +=1
+        else:
+            i += 1
+            cnt += 1
+    print(f'#{tc} {cnt}')

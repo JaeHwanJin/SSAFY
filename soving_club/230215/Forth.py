@@ -32,69 +32,108 @@ Forth 코드의 연산 결과를 출력하는 프로그램을 만드시오. 만�
 #3 168
 '''
 
-T = int(input())
-for tc in range(1, T + 1):
-    N = int(input())
-    for i in range(N):
-        string = list(map(str, input().split()))
-        operators = {
-            '*': lambda a, b: a * b,
-            '/': lambda a, b: a / b,
-            '+': lambda a, b: a + b,
-            '-': lambda a, b: a - b
-        }
-
-        # 스택 변수
-        stack = []
-        # 후위표현식의 문자열을 순회
-        for ch in string:
-            # 1. 피연산자(숫자)를 만난다면 stack에 push.
-            if ch.isnumeric():
-                stack.append(ch)
-            # 2. 연산자를 만난다면 stack에 있는 값을 2개 꺼내고(popx2) 연산을 진행하고
-            #     결과를 다시 stack에 넣어준다.
-            else:
-                a = int(stack.pop())
-                b = int(stack.pop())
-                c = operators[ch](b, a)
-                stack.append(c)
-
-        # stack에 요소가 하나 남는데, 이 값이 결괏값...
-        result = stack.pop()
-        print(result)
-
-
-# # 2. 하나하나 비교하면서 탐색할꺼야
-# def dfs(x, y):
-#     miro[x][y] = 1  # 그 길을 지나가면 1로 변경
-#     for i in range(4):  # 2)4개방향을 탐색해본다
-#         nx = x + dx[i]
-#         ny = y + dy[i]
-#         if 0 <= nx < n and 0 <= ny < n:  # 범위 안에 있는 경우
-#             if miro[nx][ny] == '0':  # 갈길이 있는 경우
-#                 dfs(nx, ny)  # 재귀를 불러옴
-#             elif miro[nx][ny] == '3':  # 값이 3이면(도착했다면)
-#                 global ans  # 답은 1!
-#                 ans = 1
-#                 return
-#
-#
+# T = int(input())
 # for tc in range(1, T + 1):
+#     N = int(input())
+#     for i in range(N):
+#         string = list(map(str, input().split()))
+#         operators = {
+#             '*': lambda a, b: a * b,
+#             '/': lambda a, b: a / b,
+#             '+': lambda a, b: a + b,
+#             '-': lambda a, b: a - b
+#         }
 #
-#     n = int(input())
+#         # 스택 변수
+#         stack = []
+#         # 후위표현식의 문자열을 순회
+#         for ch in string:
+#             # 1. 피연산자(숫자)를 만난다면 stack에 push.
+#             if ch.isnumeric():
+#                 stack.append(ch)
+#             # 2. 연산자를 만난다면 stack에 있는 값을 2개 꺼내고(popx2) 연산을 진행하고
+#             #     결과를 다시 stack에 넣어준다.
+#             else:
+#                 a = int(stack.pop())
+#                 b = int(stack.pop())
+#                 c = operators[ch](b, a)
+#                 stack.append(c)
 #
-#     # 미로 만들기
-#     miro = [list(input()) for i in range(n)]
-#
-#     # 1.방향 탐색하기 위해서 dx,dy정의 위,아래,왼,오
-#     dx = [0, 0, -1, 1]
-#     dy = [-1, 1, 0, 0]
-#
-#     for i in range(n):  # 시작지점 찾기
-#         for j in range(n):
-#             if miro[i][j] == '2':
-#                 start_x = i
-#                 start_y = j
-#     ans = 0
-#     dfs(start_x, start_y)
-#     print(f'#{tc} {ans}')
+#         # stack에 요소가 하나 남는데, 이 값이 결괏값...
+#         result = stack.pop()
+#         print(result)
+
+T = int(input())
+
+for tc in range(1, T + 1):
+    string = list(map(str, input().split()))
+
+    stack = []
+    while True:
+        try:
+            for i in string:
+                if i.isnumeric():
+                    i = int(i)
+                    stack.append(i)
+                else:
+                    if i == '+':
+                        a = int(stack.pop())
+                        b = int(stack.pop())
+                        stack.append(b + a)
+                    elif i == '-':
+                        a = int(stack.pop())
+                        b = int(stack.pop())
+                        stack.append(b - a)
+                    elif i == '*':
+                        a = int(stack.pop())
+                        b = int(stack.pop())
+                        stack.append(b * a)
+                    elif i == '/':
+                        a = int(stack.pop())
+                        b = int(stack.pop())
+                        stack.append(b / a)
+            result = stack.pop()
+            print(f'#{tc} {result}')
+            break
+        except:
+            print(f'#{tc} error')
+            break
+
+
+T = int(input())
+
+for tc in range(1, T + 1):
+    string = list(input().split())
+    stack = []
+    for i in string:
+        if i.isnumeric():
+            i = int(i)
+            stack.append(i)
+        elif i == '+' and len(stack) > 1:
+            a = int(stack.pop())
+            b = int(stack.pop())
+            stack.append(b + a)
+        elif i == '-' and len(stack) > 1:
+            a = int(stack.pop())
+            b = int(stack.pop())
+            stack.append(b - a)
+        elif i == '*' and len(stack) > 1:
+            a = int(stack.pop())
+            b = int(stack.pop())
+            stack.append(b * a)
+        elif i == '/' and len(stack) > 1:
+            a = int(stack.pop())
+            b = int(stack.pop())
+            stack.append(b / a)
+        elif i == '.':
+            if len(stack) != 1:
+                print(f'#{tc} error')
+            else:
+                result = stack.pop()
+                print(f'#{tc} {result}')
+        else:
+            print(f'#{tc} error')
+            break
+
+
+

@@ -8,7 +8,15 @@
 #
 #         arr[i], arr[minIdx] = arr[minIdx], arr[i]
 #     return arr
+arr = [3, 2, 4, 5, 1, 6, 7]
 
+for i in range(len(arr) - 1):
+    minIdx = i
+    for j in range(i + 1, len(arr)):
+        if arr[minIdx] > arr[j]:
+            minIdx = j
+    arr[i], arr[minIdx] = arr[minIdx], arr[i]
+    print(arr)
 
 # 내림차순
 # def Selection_Sort2(arr):
@@ -24,4 +32,3 @@
 
 # arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # print(Selection_Sort2(arr))
-

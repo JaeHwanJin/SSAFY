@@ -32,29 +32,42 @@
 #2 138
 #3 4
 '''
-# for tc in range(1, T + 1):
-#     Arr = []
-#     grid = [[0 for i in range(10)] for j in range(10)]
-#     N = int(input())
-#     count = 0
-#     for j in range(N):
-#         r1, c1, r2, c2, color = map(int, input().split())
-#         for x in range(r1, r2 + 1):
-#             for y in range(c1, c2 + 1):
-#                 grid[x][y] += 1
 
 from pprint import pprint
 
 T = int(input())
-
 for tc in range(1, T + 1):
     N = int(input())
     arr = [[0] * 100 for _ in range(100)]
+    cnt = 0
     for i in range(N):
         x1, y1, x2, y2 = map(int, input().split())
         for x in range(x1, x2 + 1):
             for y in range(y1, y2 + 1):
                 arr[x][y] += 1
-                if arr[x][y] == 1 :
+                if arr[x][y] > 1:
                     arr[x][y] = 1
-    pprint(arr)
+    # pprint(arr)
+    for k in range(len(arr)):
+        for l in range(len(arr)):
+            if arr[k][l] == 1:
+                cnt += 1
+    print(cnt)
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     arr = [[0] * 100 for _ in range(100)]
+#     cnt = 0
+#     for i in range(N):
+#         x1, y1, x2, y2 = map(int, input().split())
+#         for x in range(x1, x2 + 1):
+#             for y in range(y1, y2 + 1):
+#                 arr[x][y] += 1
+#                 if arr[x][y] > 1:
+#                     arr[x][y] = 1
+#     for i in range(len(arr)):
+#         for j in range(len(arr)):
+#             if arr[i][j] == 1:
+#                 cnt += 1
+#     print(f'#{tc} {cnt}')
