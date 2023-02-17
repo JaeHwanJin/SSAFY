@@ -30,3 +30,8 @@
 출력
 #1 0 1 1 0 3 3 2
 '''
+
+T = int(input())
+
+for tc in range(1, T + 1):
+    pass

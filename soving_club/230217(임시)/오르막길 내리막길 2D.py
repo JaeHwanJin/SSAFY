@@ -41,10 +41,35 @@
 1 1 1 1 1
 1 1 1 2 1
 1 1 1 1 1
-sample_input.txt
 출력
 #1 -1
 #2 -1
 #3 0
 #3 4
 '''
+
+T = int(input())
+
+for tc in range(1, T + 1):
+    N = int(input())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    mr = [-1, -1, 0, 1, 1, 1, 0, -1]
+    mc = [0, 1, 1, 1, 0, -1, -1, -1]
+    high = arr[1][1]
+    low = arr[1][1]
+    m = []
+    for i in range(1, N - 1):
+        for j in range(1, N - 1):
+                if all(arr[i][j] > arr[i + mr[k]][j + mc[k]] for k in range(8)):
+                    m.append(arr[i][j])
+    MAX = 0
+    MIN = 10000000
+    if len(m) > 1:
+        for l in range(len(m)):
+            if MAX < m[l]:
+                MAX = m[l]
+            if MIN > m[l]:
+                MIN = m[l]
+        print(f'#{tc} {MAX - MIN}')
+    else:
+        print(f'#{tc} -1')
