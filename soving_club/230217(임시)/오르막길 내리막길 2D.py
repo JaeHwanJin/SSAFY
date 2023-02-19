@@ -48,28 +48,57 @@
 #3 4
 '''
 
-T = int(input())
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     arr = [list(map(int, input().split())) for _ in range(N)]
+#     mr = [-1, -1, 0, 1, 1, 1, 0, -1]
+#     mc = [0, 1, 1, 1, 0, -1, -1, -1]
+#     high = arr[1][1]
+#     low = arr[1][1]
+#     m = []
+#     for i in range(1, N - 1):
+#         for j in range(1, N - 1):
+#                 if all(arr[i][j] > arr[i + mr[k]][j + mc[k]] for k in range(8)):
+#                     m.append(arr[i][j])
+#     MAX = 0
+#     MIN = 10000000
+#     if len(m) > 1:
+#         for l in range(len(m)):
+#             if MAX < m[l]:
+#                 MAX = m[l]
+#             if MIN > m[l]:
+#                 MIN = m[l]
+#         print(f'#{tc} {MAX - MIN}')
+#     else:
+#         print(f'#{tc} -1')
 
+
+T = int(input())
 for tc in range(1, T + 1):
     N = int(input())
     arr = [list(map(int, input().split())) for _ in range(N)]
     mr = [-1, -1, 0, 1, 1, 1, 0, -1]
     mc = [0, 1, 1, 1, 0, -1, -1, -1]
-    high = arr[1][1]
-    low = arr[1][1]
-    m = []
+    mountain = []
+    high = 0
+    low = 10000
     for i in range(1, N - 1):
         for j in range(1, N - 1):
-                if all(arr[i][j] > arr[i + mr[k]][j + mc[k]] for k in range(8)):
-                    m.append(arr[i][j])
-    MAX = 0
-    MIN = 10000000
-    if len(m) > 1:
-        for l in range(len(m)):
-            if MAX < m[l]:
-                MAX = m[l]
-            if MIN > m[l]:
-                MIN = m[l]
-        print(f'#{tc} {MAX - MIN}')
-    else:
+            cnt = 0
+            for k in range(8):
+                nr, nc = i + mr[k], j + mc[k]
+                if 0 <= nr < N and 0 <= nc < N and arr[i][j] > arr[nr][nc]:
+                    cnt += 1
+            if cnt == 8:
+                mountain.append(arr[i][j])
+    for l in mountain:
+        if high < l:
+            high = l
+        if low > l:
+            low = l
+    if len(mountain) < 2:
         print(f'#{tc} -1')
+    else:
+        print(f'#{tc} {high - low}')

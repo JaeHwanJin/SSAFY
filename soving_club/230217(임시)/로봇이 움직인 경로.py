@@ -30,8 +30,76 @@
 출력
 #1 0 1 1 0 3 3 2
 '''
+#
+# T = int(input())
+# N = int(input())
+# arr = [list(map(int, input().split())) for _ in range(N)]
+
+# # 로봇은 0: 오른쪽 / 1: 밑 / 2: 왼쪽 / 3: 위족
+# di = [0, 1, 0, -1]
+# dj = [1, 0, -1, 0]
+#
+# # 방문위치 / 결과 리스트
+# visited = [[False] * N for _ in range(N)]
+# result = []
+#
+# # 범위를 설정
+# # 출발지점
+# si, sj = 0, 0
+# visited[si][sj] = True
+# result.append(arr[si][sj])
+#
+# # 인덱스 값이 arr[i][j]의 값으로 나타나 있다.
+# # while True를 작성해 주고 / -> break문으로 종료조건을 만들어준다.
+# while True:
+#     ci, cj = si + di[arr[si][sj]], sj + dj[arr[si][sj]]
+#     if visited[ci][cj] == True or ci < 0 or cj < 0 or ci >= N or cj >= N:
+#         break
+#     visited[ci][cj] = True
+#     result.append(arr[ci][cj])
+#     # 시작 위치 갱신
+#     si, sj = ci, cj
+#
+# print('#1', end=' ')
+# print(*result)
+
+
+# T = int(input())
+# N = int(input())
+# arr = [list(map(int, input().split())) for _ in range(N)]
+# mr = [0, 1, 0, -1]
+# mc = [1, 0, -1, 0]
+# visited = [[False] * N for _ in range(N)]
+# way = []
+# sr, sc = 0, 0
+# visited[sr][sc] = True
+# way.append(arr[sr][sc])
+# while True:
+#     nr, nc = sr + mr[arr[sr][sc]], sc + mc[arr[sr][sc]]
+#     if visited[nr][nc] == True or nr < 0 or nc < 0 or nr >= N or nc >= N:
+#         break
+#     visited[nr][nc] = True
+#     way.append(arr[nr][nc])
+#     sr, sc = nr, nc
+# print(way)
+
 
 T = int(input())
-
 for tc in range(1, T + 1):
-    pass
+    N = int(input())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    visited = [[False] * N for _ in range(N)]
+    way = []
+    mr = [0, 1, 0, -1]
+    mc = [1, 0, -1, 0]
+    sr, sc = 0, 0
+    visited[sr][sc] = True
+    way.append(arr[sr][sc])
+    while True:
+        nr, nc = sr + mr[arr[sr][sc]], sc + mc[arr[sr][sc]]
+        if visited[nr][nc] == True or nr < 0 or nc < 0 or nr >= N or nc >= N:
+            break
+        visited[nr][nc] = True
+        way.append(arr[nr][nc])
+        sr, sc = nr, nc
+    print(f'#{tc}', *way)
