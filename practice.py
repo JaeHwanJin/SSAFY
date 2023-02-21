@@ -1,18 +1,5 @@
-'''
-삽입 : enQueue(item)
-마지막 원소 뒤에 새로운 원소를 삽입하기 위해
-1) rear 값을 하나 증가시켜 새로운 원소를 삽입할 자리를 마련
-2) 그 인덱스에 해당하는 배열원소 Q[rear]에 item을 저장
+N, M = map(int, input().split())
+B = [list(map(int, input().split())) for _ in range(N)]
 
-삭제 : deQueue()
-가장 앞에 있는 원소를 삭제하기 위해
-1) front 값을 하나 증가시켜 큐에 남아있게 될 첫 번째 원소 이동
-2) 새로운 첫 번째 원소를 리턴 함으로써 삭제와 동일한 기능함
-
-공백상태 및 포화상태 검사 : isEmpty(), isFull()
-공백상태 : front == rear
-포화상태 : rear == n -1
-
-
-'''
-# 함수로 구현
+for _ in range(M):
+    num = map(int, input().split())

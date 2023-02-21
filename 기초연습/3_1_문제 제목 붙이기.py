@@ -39,29 +39,48 @@ Better_Problem
 #3 0
 '''
 
+# 문제 제목 붙이기
+
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     arr = [input() for _ in range(N)]
+#     new_arr = []
+#     cnt = 0  # 제목의 개수
+#
+#     for i in range(N):
+#         new_arr.append(ord(arr[i][0]))  # A, B, C... 순으로 정렬되어있는지 확인하기 위해 숫자로 변경
+#
+#     new_arr = sorted(list(set(new_arr)))    # 오름차순 정렬
+#
+#     for l in range(len(new_arr) - 1):  # 인접한 숫자끼리 1씩 증가한다면 순서가 맞기때문에 cnt에 추가
+#         if new_arr[l] == 65:  # A로 시작하면 cnt는 기본으로 1
+#             cnt += 1
+#         elif new_arr[l] + 1 == new_arr[l + 1]:
+#             cnt += 1
+#     print(f'#{tc} {cnt}')
+
+# 패턴 마디의 길이
+
 T = int(input())
 
 for tc in range(1, T + 1):
-    N = int(input())
-    arr = [input() for _ in range(N)]
-    new_arr = []
-    # print(arr)
-    cnt = 0
+    STR = input()
+    for i in range(10, 0, -1):     # 마디의 최대길이만큼 반복
+        if STR[0:i] == STR[i:i * 2]:    #  같다면 문자열 패턴이기 때문에 출력
+            print(f'#{tc} {i}')
+            break
 
-    for i in range(N):
-        new_arr.append(ord(arr[i][0]))
-    for k in range(len(new_arr) - 1):
-        for j in range(len(new_arr) - 1):
-            if new_arr[j] > new_arr[j + 1]:
-                new_arr[j], new_arr[j + 1] = new_arr[j + 1], new_arr[j]
-
-    new_arr = list(set(new_arr))
-
-    for l in range(len(new_arr) - 1):
-        if new_arr[l] + 1 == new_arr[l + 1]:
-            cnt += 1
-        elif new_arr[l] == 65:
-            cnt += 1
-    print(f'#{tc} {cnt}')
-
-
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     STR = list(input())
+#     cnt = 0
+#
+#     for j in range(1, 10):
+#         if STR[0] != STR[j] or STR[1] != STR[j + 1]:
+#             cnt += 1
+#         else:
+#             break
+#     print(f'#{tc} {cnt + 1}')

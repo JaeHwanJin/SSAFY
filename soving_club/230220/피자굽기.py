@@ -28,15 +28,28 @@ N개의 피자를 동시에 구울 수 있는 화덕이 있다. 피자는 치즈
 #2 8
 #3 6
 '''
+from collections import deque
 
-# T = int(input())
-# for tc in range(1, T + 1):
-N, M = map(int, input().split())
-pizza = list(map(int, input().split()))
-pizza_list = list()
-fp = [] * N
-for i in enumerate(pizza):
-    pizza_list.append(i)
-while True:
-    for j in range(N):
-        fp.append(pizza[0][0])
+T = int(input())
+
+for tc in range(1, T + 1):
+    N, M = map(int, input().split())
+    pizza = list(map(int, input().split()))
+    pi = deque()
+    fp = deque()
+    for i in range(len(pizza)):  # 피자 순서 지정
+        pi.append([i, pizza[i]])
+    # print(pi)
+    for i in range(N):  # 화덕에 피자 넣기
+        fp.append(pi.popleft())
+    # print(fp)
+    while fp:
+        # out = fp.popleft()
+        # print(out)
+        # cheese = out[1] // 2
+        for i in range(len(fp)):
+            fp[i][1] //= 2
+            if fp[i][1] == 0:
+                if len(pi) != 0:
+                    fp[i] = pi.popleft()
+
