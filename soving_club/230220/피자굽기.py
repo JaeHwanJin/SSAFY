@@ -31,25 +31,62 @@ N개의 피자를 동시에 구울 수 있는 화덕이 있다. 피자는 치즈
 from collections import deque
 
 T = int(input())
-
 for tc in range(1, T + 1):
     N, M = map(int, input().split())
     pizza = list(map(int, input().split()))
-    pi = deque()
-    fp = deque()
-    for i in range(len(pizza)):  # 피자 순서 지정
-        pi.append([i, pizza[i]])
-    # print(pi)
-    for i in range(N):  # 화덕에 피자 넣기
-        fp.append(pi.popleft())
-    # print(fp)
-    while fp:
-        # out = fp.popleft()
-        # print(out)
-        # cheese = out[1] // 2
+    PIZZA = deque()
+    for _ in range(len(pizza)):
+        PIZZA.append([_ + 1, pizza[_]])
+    fp = deque(maxlen=N)
+    for _ in range(N):
+        fp.append(PIZZA.popleft())
+    # result = []
+    while len(PIZZA) != 0:
         for i in range(len(fp)):
-            fp[i][1] //= 2
+            fp[i][1] = fp[i][1] // 2
             if fp[i][1] == 0:
-                if len(pi) != 0:
-                    fp[i] = pi.popleft()
+                # result.append(fp[i])
+                if len(PIZZA) != 0:
+                    fp[i] = PIZZA.popleft()
+    print(fp)
+    # MAX = 0
+    # result = 0
+    # for i in range(len(fp)):
+    #     if MAX < fp[i][1]:
+    #         MAX = fp[i][1]
+    #         result = fp[i][0]
+    # print(MAX)
+    # print(f'#{tc} {}')
 
+# from collections import deque
+#
+# T = int(input())
+# # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
+# for test_case in range(1, T + 1):
+#     N, M = map(int, input().split())
+#
+#     pizza = list(map(int, input().split()))
+#     pizzas = deque()
+#     for i in range(M):
+#         pizzas.append([pizza[i], i + 1])
+#
+#     oven = deque(maxlen=N)
+#
+#     for _ in range(N):
+#         oven.append(pizzas.popleft())
+#
+#     result = -1
+#     while len(oven) > 1:
+#         # print('oven: ', oven)
+#         # print('pizzas: ', pizzas)
+#         peek = oven.popleft()
+#         peek_cheese = peek[0] // 2
+#         peek_num = peek[1]
+#         print(oven)
+#         if peek_cheese > 0:
+#             oven.append([peek_cheese, peek_num])
+#         else:
+#             if len(pizzas) > 0:
+#                 oven.append(pizzas.popleft())
+#
+#     print(f'#{test_case} {oven.popleft()[1]}')
