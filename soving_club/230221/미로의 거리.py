@@ -48,7 +48,6 @@ from collections import deque
 
 
 def bfs(r, c):
-    global Miro
     Queue = deque()
     visited = [[False] * (N) for _ in range(N)]
 

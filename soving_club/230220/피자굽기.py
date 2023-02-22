@@ -33,30 +33,58 @@ from collections import deque
 T = int(input())
 for tc in range(1, T + 1):
     N, M = map(int, input().split())
-    pizza = list(map(int, input().split()))
-    PIZZA = deque()
+    pizza = deque(map(int, input().split()))
+
     for _ in range(len(pizza)):
-        PIZZA.append([_ + 1, pizza[_]])
+        pizza[_] = [_ + 1, pizza[_]]
+    # print(pizza)
+
     fp = deque(maxlen=N)
     for _ in range(N):
-        fp.append(PIZZA.popleft())
-    # result = []
-    while len(PIZZA) != 0:
-        for i in range(len(fp)):
-            fp[i][1] = fp[i][1] // 2
-            if fp[i][1] == 0:
-                # result.append(fp[i])
-                if len(PIZZA) != 0:
-                    fp[i] = PIZZA.popleft()
-    print(fp)
-    # MAX = 0
-    # result = 0
-    # for i in range(len(fp)):
-    #     if MAX < fp[i][1]:
-    #         MAX = fp[i][1]
-    #         result = fp[i][0]
-    # print(MAX)
-    # print(f'#{tc} {}')
+        fp.append(pizza.popleft())
+    # print(fp)
+
+    while len(fp) != 1:
+        op = fp.popleft()
+        cheese = op[1] // 2
+        pn = op[0]
+        if cheese != 0:
+            fp.append([pn, cheese])
+        elif cheese == 0:
+            if len(pizza) > 0:
+                fp.append(pizza.popleft())
+    print(f'#{tc} {fp[0][0]}')
+
+
+
+
+# from collections import deque
+#
+# T = int(input())
+# for tc in range(1, T + 1):
+#     N, M = map(int, input().split())
+#     pizza = deque(map(int, input().split()))
+#     PIZZA = deque() # 피자에 index 부여
+#     for _ in range(len(pizza)): # 피자에 index 부여
+#         PIZZA.append([_ + 1, pizza[_]])
+#     fp = deque(maxlen=N)    # 화덕 최댓값 지정
+#     for _ in range(N):
+#         fp.append(PIZZA.popleft())
+#     while len(PIZZA) != 0:  # 화덕에 넣을 피자가 남아있지 않을때까지
+#         for i in range(len(fp)):
+#             if fp[i][1] == 0:
+#                 if len(PIZZA) != 0:
+#                     fp[i] = PIZZA.popleft()
+#             elif len(PIZZA) != 0:
+#                 if fp[i][1] != 0:
+#                     fp[i][1] = fp[i][1] // 2
+#     MAX = 0
+#     result = 0
+#     for i in range(len(fp)):
+#         if MAX < fp[i][1]:
+#             MAX = fp[i][1]
+#             result = fp[i][0]
+#     print(f'#{tc} {result}')
 
 # from collections import deque
 #

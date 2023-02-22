@@ -34,38 +34,67 @@ input.txt
 #1 1
 
 '''
-from pprint import pprint
-
+# 스도쿠 검증
 T = int(input())
 
 for tc in range(1, T + 1):
     sudoku = [list(map(int, input().split())) for _ in range(9)]
     cnt = 0
-    # pprint(sudoku)
-    # pprint(check)
+    # 9 * 9 스도쿠 확인
     for i in range(9):
-        row = [0] * 10
-        col = [0] * 10
+        row = [0] * 10  # 1부터 시작하기때문에
+        col = [0] * 10  # 1부터 시작하기때문에
         for j in range(9):
-            row[sudoku[i][j]] += 1
-            cnt += 1
-            if row[sudoku[i][j]] != 1:
-                print(f'#{tc} 0')
+            row[sudoku[i][j]] += 1  # sudoku에 적힌 숫자를 활용해서 중복된 값이 있으면 값이 1초과이니 스도쿠 실패
+            if row[sudoku[i][j]] > 1:
+                cnt += 1
                 break
-
-            col[sudoku[i][j]] += 1
-            cnt += 1
-            if col[sudoku[i][j]] != 1:
-                print(f'#{tc} 0')
+            col[sudoku[j][i]] += 1  # sudoku에 적힌 숫자를 활용해서 중복된 값이 있으면 값이 1초과이니 스도쿠 실패
+            if col[sudoku[j][i]] > 1:
+                cnt += 1
                 break
-    # 정사각형(3행 3열) 내부 검사
-    for x in range(0, 9, 3):
-        for y in range(0, 9, 3):
-            check = [0] * 10
-            for i in range(3):
-                for j in range(3):
-                    check[sudoku[x + i][y + j]] += 1
+    # 3 * 3 스도쿠 확인
+    for k in range(0, 9, 3):
+        r_check = [0] * 10
+        c_check = [0] * 10
+        for x in range(3):
+            for y in range(3):
+                r_check[sudoku[x + k][y + k]] += 1
+                if r_check[sudoku[x + k][y + k]] > 1:
                     cnt += 1
-                    if check[sudoku[x + i][y + j]] != 1:
-                        print(f'#{tc} 0')
-                        break
+                    break
+                c_check[sudoku[y + k][x + k]] += 1
+                if c_check[sudoku[y + k][x + k]] > 1:
+                    cnt += 1
+                    break
+    if cnt != 0 :
+        print(f'#{tc} 0')
+    else:
+        print(f'#{tc} 1')
+
+    # for i in range(9):
+    #     row = [0] * 10
+    #     col = [0] * 10
+    #     for j in range(9):
+    #         row[sudoku[i][j]] += 1
+    #         cnt += 1
+    #         if row[sudoku[i][j]] != 1:
+    #             print(f'#{tc} 0')
+    #             break
+    #
+    #         col[sudoku[i][j]] += 1
+    #         cnt += 1
+    #         if col[sudoku[i][j]] != 1:
+    #             print(f'#{tc} 0')
+    #             break
+    # # 정사각형(3행 3열) 내부 검사
+    # for x in range(0, 9, 3):
+    #     for y in range(0, 9, 3):
+    #         check = [0] * 10
+    #         for i in range(3):
+    #             for j in range(3):
+    #                 check[sudoku[x + i][y + j]] += 1
+    #                 cnt += 1
+    #                 if check[sudoku[x + i][y + j]] != 1:
+    #                     print(f'#{tc} 0')
+    #                     break
