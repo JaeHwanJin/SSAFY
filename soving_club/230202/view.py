@@ -1,35 +1,83 @@
+'''
+강변에 빌딩들이 옆으로 빽빽하게 밀집한 지역이 있다.
+이곳에서는 빌딩들이 너무 좌우로 밀집하여, 강에 대한 조망은 모든 세대에서 좋지만 왼쪽 또는 오른쪽 창문을 열었을 때 바로 앞에 옆 건물이 보이는 경우가 허다하였다.
+그래서 이 지역에서는 왼쪽과 오른쪽으로 창문을 열었을 때, 양쪽 모두 거리 2 이상의 공간이 확보될 때 조망권이 확보된다고 말한다.
+빌딩들에 대한 정보가 주어질 때, 조망권이 확보된 세대의 수를 반환하는 프로그램을 작성하시오.
+아래와 같이 강변에 8채의 빌딩이 있을 때, 연두색으로 색칠된 여섯 세대에서는 좌우로 2칸 이상의 공백이 존재하므로 조망권이 확보된다. 따라서 답은 6이 된다.
+A와 B로 표시된 세대의 경우는 왼쪽 조망은 2칸 이상 확보가 되었지만 오른쪽 조망은 한 칸 밖에 확보가 되지 않으므로 조망권을 확보하지 못하였다.
+C의 경우는 반대로 오른쪽 조망은 2칸이 확보가 되었지만 왼쪽 조망이 한 칸 밖에 확보되지 않았다.
+
+[제약 사항]
+가로 길이는 항상 1000이하로 주어진다.
+맨 왼쪽 두 칸과 맨 오른쪽 두 칸에는 건물이 지어지지 않는다. (예시에서 빨간색 땅 부분)
+각 빌딩의 높이는 최대 255이다.
+
+[입력]
+총 10개의 테스트케이스가 주어진다.
+각 테스트케이스의 첫 번째 줄에는 건물의 개수 N이 주어진다. (4 ≤ N ≤ 1000)
+그 다음 줄에는 N개의 건물의 높이가 주어진다. (0 ≤ 각 건물의 높이 ≤ 255)
+맨 왼쪽 두 칸과 맨 오른쪽 두 칸에 있는 건물은 항상 높이가 0이다. (예시에서 빨간색 땅 부분)
+
+[출력]
+#부호와 함께 테스트케이스의 번호를 출력하고, 공백 문자 후 조망권이 확보된 세대의 수를 출력한다.
+입력
+100
+0 0 225 214 82 73 241 233 179 219 135 62 36 13 6 71 179 77 67 139 31 90 9 37 ...
+1000
+0 0 225 214 82 73 241 233 179 219 135 62 36 13 6 71 179 77 67 139 31 90 9 37 ...
+
+출력
+#1 691
+#2 9092
+...
+'''
 import sys
 
-sys.stdin = open('input.txt', 'r')
+sys.stdin = open('view.txt', 'r')
+# # 총 10개의 테스트 케이스가 주어진다
+# for tc in range(1, 11):  # 1~10
+#
+#     # 각 테스트케이스의 첫 번째 줄에는 건물의 개수 N이 주어진다.
+#     n = int(input())
+#     # 그 다음 줄에는 N개의 건물의 높이가 주어진다.
+#     buildings = list(map(int, input().split()))
+#
+#     result = 0  # 나중에 사용 할 결과 값
+#     # 빌딩을 순회한다 i : [2, n-2]
+#     for i in range(2, n - 2):
+#         # 1번 방법
+#         # 두칸까지 빌딩 높이차가 몇인지 확인 : b[i-2], b[i-1] (), b[i+1], b[i+2] 빌딩의 높이 차를 확인한다.
+#         # diff1 = buildings[i] - buildings[i - 2]
+#         # diff2 = buildings[i] - buildings[i - 1]
+#         # diff3 = buildings[i] - buildings[i + 1]
+#         # diff4 = buildings[i] - buildings[i + 2]
+#         # # 높이차가 이 중에서 0 초과로 되어야만 조망권이 확보된다. (조건식)
+#         # if diff1 > 0 and diff2 > 0 and diff3 > 0 and diff4:
+#         #     # 높이차 중에서 가장 작은 값을 카운트 하면 된다.
+#         #     result += min(diff1, diff2, diff3, diff4)
+#
+#         # 2번 방법
+#         # 비교할 빌딩 중에 가장 높은 빌딩을 찾아서 조망권이 있는지 확인
+#         mx = max(buildings[i - 2], buildings[i - 1], buildings[i + 1], buildings[i + 2])
+#         if buildings[i] > mx:
+#             result += buildings[i] - mx
+#     print(f'#{tc} {result}')
 
-# 총 10개의 테스트 케이스가 주어진다
-for tc in range(1, 11):  # 1~10
+# -----------------------------------------------------------------------------------------------------#
+# 2023 - 02 - 23 복습
 
-    # 각 테스트케이스의 첫 번째 줄에는 건물의 개수 N이 주어진다.
-    n = int(input())
-    # 그 다음 줄에는 N개의 건물의 높이가 주어진다.
-    buildings = list(map(int, input().split()))
+import sys
 
-    result = 0  # 나중에 사용 할 결과 값
-    # 빌딩을 순회한다 i : [2, n-2]
-    for i in range(2, n - 2):
-        # 1번 방법
-        # 두칸까지 빌딩 높이차가 몇인지 확인 : b[i-2], b[i-1] (), b[i+1], b[i+2] 빌딩의 높이 차를 확인한다.
-        # diff1 = buildings[i] - buildings[i - 2]
-        # diff2 = buildings[i] - buildings[i - 1]
-        # diff3 = buildings[i] - buildings[i + 1]
-        # diff4 = buildings[i] - buildings[i + 2]
-        # # 높이차가 이 중에서 0 초과로 되어야만 조망권이 확보된다. (조건식)
-        # if diff1 > 0 and diff2 > 0 and diff3 > 0 and diff4:
-        #     # 높이차 중에서 가장 작은 값을 카운트 하면 된다.
-        #     result += min(diff1, diff2, diff3, diff4)
+sys.stdin = open('view.txt', 'r')
 
-        # 2번 방법
-        # 비교할 빌딩 중에 가장 높은 빌딩을 찾아서 조망권이 있는지 확인
-        mx = max(buildings[i - 2], buildings[i - 1], buildings[i + 1], buildings[i + 2])
-        if buildings[i] > mx:
-            result += buildings[i] - mx
-    print(f'#{tc} {result}')
-
-
-
+for tc in range(1, 11):
+    N = int(input())
+    high = list(map(int, input().split()))
+    cnt = 0
+    for i in range(2, N - 2):
+        if (high[i] - high[i - 1]) > 0 and (high[i] - high[i - 2]) > 0 and (high[i] - high[i + 2]) > 0 and (
+                high[i] - high[i + 1]) > 0:
+            cnt += high[i] - max(high[i + 2], high[i + 1], high[i - 2], high[i - 1])
+        else:
+            continue
+    print(f'#{tc} {cnt}')

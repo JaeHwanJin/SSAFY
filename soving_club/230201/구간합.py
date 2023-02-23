@@ -29,44 +29,49 @@ M개의 합이 가장 큰 경우와 가장 작은 경우의 차이를 출력하�
 #3 1090
 '''
 
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     N, M = map(int, input().split())
+#     arr_num = list(map(int, input().split()))
+#     MIN = 100000
+#     MAX = 0
+#     for i in range(N - M + 1):
+#         SUM = 0
+#         for j in range(i, i + M):
+#             SUM += arr_num[j]
+#         if MAX < SUM:
+#             MAX = SUM
+#         if MIN > SUM:
+#             MIN = SUM
+#     print(f'#{tc} {MAX - MIN}')
+#
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     N, M = map(int, input().split())
+#     arr_num = list(map(int, input().split()))
+#     MIN = 100000
+#     MAX = 0
+#     for i in range(N - M + 1):
+#         SUM = 0
+#         for j in arr_num[i: i + M]:
+#             SUM += j
+#         if MAX < SUM:
+#             MAX = SUM
+#         if MIN > SUM:
+#             MIN = SUM
+#     print(f'#{tc} {MAX - MIN}')
+#
+
+# ---------------------------------------- #
+# 2023 - 02 - 23 복습
+# 첫 줄에 테스트 케이스 개수 T가 주어진다.  ( 1 ≤ T ≤ 50 )
 T = int(input())
-
-for tc in range(1, T + 1):
-    N, M = map(int, input().split())
-    arr_num = list(map(int, input().split()))
-    MIN = 100000
-    MAX = 0
-    for i in range(N - M + 1):
-        SUM = 0
-        for j in range(i, i + M):
-            SUM += arr_num[j]
-        if MAX < SUM:
-            MAX = SUM
-        if MIN > SUM:
-            MIN = SUM
-    print(f'#{tc} {MAX - MIN}')
-
-T = int(input())
-
-for tc in range(1, T + 1):
-    N, M = map(int, input().split())
-    arr_num = list(map(int, input().split()))
-    MIN = 100000
-    MAX = 0
-    for i in range(N - M + 1):
-        SUM = 0
-        for j in arr_num[i: i + M]:
-            SUM += j
-        if MAX < SUM:
-            MAX = SUM
-        if MIN > SUM:
-            MIN = SUM
-    print(f'#{tc} {MAX - MIN}')
-
-T = int(input())
-
+# 다음 줄부터 테스트케이스의 첫 줄에 정수의 개수 N과 구간의 개수 M 주어진다. ( 10 ≤ N ≤ 100,  2 ≤ M ＜ N )
 for i in range(T):
     N, M = map(int, input().split())
+    # 다음 줄에 N개의 정수 ai가 주어진다. ( 1 ≤ a ≤ 10000 )
     ai = list(map(int, input().split()))
     max_sum = 0
     min_sum = 1000000
