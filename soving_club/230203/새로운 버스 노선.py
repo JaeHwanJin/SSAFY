@@ -42,6 +42,29 @@
 #                     bus_list[l] += 1
 #     print(f'#{i} {max(bus_list)}')
 
+# ----------------------------------------------------------------- #
+# 2023 - 02 - 24 복습
 
-
-
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+    bs = [0] * 1001
+    for i in range(N):
+        bn, sta, end = map(int, input().split())
+        if bn == 1:
+            for j in range(sta, end + 1):
+                bs[j] += 1
+        elif bn == 2:
+            for k in range(sta, end + 1):
+                if sta % 2 == 0 and k % 2 == 0:
+                    bs[k] += 1
+                elif sta % 2 != 0 and k % 2 != 0:
+                    bs[k] += 1
+        elif bn == 3:
+            for l in range(sta, end + 1):
+                if sta % 2 == 0 and l % 4 == 0 and l % 10 != 0:
+                    bs[l] += 1
+                elif sta % 2 != 0 and l % 3 == 0 and l % 10 != 0:
+                    bs[l] += 1
+    # print(bs)
+    print(f'#{tc} {max(bs)}')

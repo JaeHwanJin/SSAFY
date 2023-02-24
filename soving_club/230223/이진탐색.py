@@ -24,3 +24,22 @@ N이 주어졌을 때 완전 이진 트리로 만든 이진 탐색 트리의 루
 #2 5 2
 #3 8 14
 '''
+T = int(input())
+
+
+def tree(n):
+    global NUM
+    # 배열이니까 배열크기 넘어가지 않도록
+    if n <= N:
+        tree(n * 2)
+        TREE[n] = NUM
+        NUM += 1
+        tree(n * 2 + 1)
+
+
+for tc in range(1, T + 1):
+    N = int(input())
+    TREE = [0 for i in range(N + 1)]
+    NUM = 1
+    tree(1)
+    print(f'#{tc} {TREE[1]} {TREE[N // 2]}')

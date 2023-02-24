@@ -11,20 +11,66 @@
 각 줄마다 "#T" (T는 테스트 케이스 번호)를 출력한 뒤, 답을 출력한다.
 '''
 
-T = int(input())
+# T = int(input())
+#
+# arr = [i for i in range(1, 13)]
+#
+# for tc in range(1, T + 1):
+#     n, k = map(int, input().split())
+#     count = 0
+#     for i in range(1 << len(arr)):
+#         new_count = 0
+#         total = 0
+#         for j in range(len(arr)):
+#             if i & (1 << j):
+#                 total += arr[j]
+#                 new_count += 1
+#         if total == k and new_count == n:
+#             count += 1
+#     print(f'#{tc} {count}')
 
-arr = [i for i in range(1, 13)]
+# ----------------------------------------------------------------- #
+# 2023 - 02 - 24 복습
 
-for tc in range(1, T + 1):
-    n, k = map(int, input().split())
-    count = 0
-    for i in range(1 << len(arr)):
-        new_count = 0
-        total = 0
-        for j in range(len(arr)):
-            if i & (1 << j):
-                total += arr[j]
-                new_count += 1
-        if total == k and new_count == n:
-            count += 1
-    print(f'#{tc} {count}')
+# 첫 줄에 테스트 케이스 개수 T가 주어진다.  ( 1 ≤ T ≤ 50 )
+# T = int(input())
+# for tc in range(1, T + 1):
+#     # 테스트 케이스 별로 부분집합 원소의 수 N과 부분 집합의 합 K가 여백을 두고 주어진다. ( 1 ≤ N ≤ 12, 1 ≤ K ≤ 100 )
+#     N, K = map(int, input().split())
+#     # 1부터 12까지의 숫자를 원소로 가진 집합 A가 있다.
+#     A = [_ for _ in range(1, 13)]
+#     lst = []
+#     cnt = 0
+#     for i in A:  # 3개의 합을 구하기 위한  for문
+#         for j in A:
+#             for k in A:
+#                 if i != j != k:
+#                     SUM = i+j+k
+#                     if SUM == K:
+#
+#     print(lst)
+#
+#
+#     print(f'#{tc} {cnt}')
+
+# T = int(input())
+#
+# arr = [i for i in range(1, 13)]
+#
+# for test_case in range(1, T + 1):
+#     n, k = map(int, input().split())
+#     count = 0
+#     for i in range(1 << len(arr)):
+#         total = 0
+#         new_count = 0
+#         for j in range(len(arr)):
+#             if i & (1 << j):
+#                 total += arr[j]
+#                 new_count += 1
+#         if total == k and new_count == n:
+#             count += 1
+#     print(f'#{test_case} {count}')
+
+# for i in range(1 << 12):
+#     print(i)
+

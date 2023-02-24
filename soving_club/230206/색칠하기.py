@@ -38,26 +38,53 @@ color = 1 (빨강), color = 2 (파랑)
 #                 count += 1
 #     print(f'#{i} {count}')
 
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     Arr = []
+#     grid = [[0 for i in range(10)] for j in range(10)]
+#     # for i in range(10):
+#     #     arr = []
+#     #     for j in range(10):
+#     #         arr.append(0)
+#     #     Arr.append(arr)
+#     N = int(input())
+#     count = 0
+#     for j in range(N):
+#         r1, c1, r2, c2, color = map(int, input().split())
+#         for x in range(r1, r2 + 1):
+#             for y in range(c1, c2 + 1):
+#                 grid[x][y] += 1
+#
+#     for z in grid:
+#         for q in z:
+#             if q >= 2:
+#                 count += 1
+#     print(f'#{tc} {count}')
+
+
+# ----------------------------------------------------------------- #
+# 2023 - 02 - 24 복습
+
+from pprint import pprint
+
+# 첫 줄에 테스트 케이스 개수 T가 주어진다.   ( 1 ≤ T ≤ 50 )
 T = int(input())
-
 for tc in range(1, T + 1):
-    Arr = []
-    grid = [[0 for i in range(10)] for j in range(10)]
-    # for i in range(10):
-    #     arr = []
-    #     for j in range(10):
-    #         arr.append(0)
-    #     Arr.append(arr)
+    # 다음 줄부터 테스트케이스의 첫 줄에 칠할 영역의 개수 N이 주어진다. ( 2 ≤ N ≤ 30 )
     N = int(input())
-    count = 0
-    for j in range(N):
+    arr = [[0] * 10 for _ in range(10)]
+    # 다음 줄에 왼쪽 위 모서리 인덱스 r1, c1, 오른쪽 아래 모서리 r2, c2와 색상 정보 color가 주어진다. ( 0 ≤ r1, c1, r2, c2 ≤ 9 )
+    for i in range(N):
         r1, c1, r2, c2, color = map(int, input().split())
-        for x in range(r1, r2 + 1):
-            for y in range(c1, c2 + 1):
-                grid[x][y] += 1
+        for j in range(r1, r2 + 1):  # 주어진 범위 만큼 1을 추가해줘서 색칠한것을 표현
+            for k in range(c1, c2 + 1):
+                arr[j][k] += 1
+    MAX = max(max(arr))  # 한개의 리스트에서 가장 큰 값이 겹쳐진 부분
+    cnt = 0
+    for x in range(len(arr)):
+        for y in range(len(arr)):
+            if arr[x][y] == MAX:
+                cnt += 1
 
-    for z in grid:
-        for q in z:
-            if q >= 2:
-                count += 1
-    print(f'#{tc} {count}')
+    print(f'#{tc} {cnt}')

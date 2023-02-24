@@ -33,31 +33,63 @@ A는 300, B는 50 쪽을 찾아야 하는 경우, 다음처럼 중간 페이지�
 
 '''
 
-# 풀이
-def book(start, end, mid): # 몇 회만에 가운데 페이지를 찾는지 계산하는 함수
+
+# # 풀이
+# def book(start, end, mid): # 몇 회만에 가운데 페이지를 찾는지 계산하는 함수
+#     cnt = 0
+#     while start <= end:
+#         mid_page = (start + end) // 2
+#         if mid_page == mid:
+#             return cnt
+#         elif mid_page > mid:
+#             end = mid_page
+#             cnt += 1
+#         else:
+#             start = mid_page
+#             cnt += 1
+#
+#
+# Test_case = int(input())
+#
+# for tc in range(1, Test_case + 1):
+#     total, A, B = map(int, input().split())
+#     A_cnt = book(1, total, A)
+#     B_cnt = book(1, total, B)
+#
+#     if A_cnt < B_cnt:
+#         print(f'#{tc} A')
+#     elif B_cnt < A_cnt:
+#         print(f'#{tc} B')
+#     elif A_cnt == B_cnt:
+#         print(f'#{tc} 0')
+
+# ----------------------------------------------------------------- #
+# 2023 - 02 - 24 복습
+# 구해야 할 대상마다 반복해야하면 함수쓰자...
+def check(start, P, result):
     cnt = 0
-    while start <= end:
-        mid_page = (start + end) // 2
-        if mid_page == mid:
-            return cnt
-        elif mid_page > mid:
-            end = mid_page
-            cnt += 1
-        else:
+    while start <= P:
+        mid_page = (start + P) // 2
+        cnt += 1
+        if mid_page == result:
+            break
+        elif mid_page < result:
             start = mid_page
-            cnt += 1
+        else:
+            P = mid_page
+
+    return cnt
 
 
-Test_case = int(input())
-
-for tc in range(1, Test_case + 1):
-    total, A, B = map(int, input().split())
-    A_cnt = book(1, total, A)
-    B_cnt = book(1, total, B)
-
-    if A_cnt < B_cnt:
-        print(f'#{tc} A')
-    elif B_cnt < A_cnt:
+T = int(input())
+for tc in range(1, T + 1):
+    P, A, B = map(int, input().split())
+    start = 1
+    A_cnt = check(start, P, A)
+    B_cnt = check(start, P, B)
+    if A_cnt > B_cnt:
         print(f'#{tc} B')
-    elif A_cnt == B_cnt:
+    elif A_cnt < B_cnt:
+        print(f'#{tc} A')
+    else:
         print(f'#{tc} 0')

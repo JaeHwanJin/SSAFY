@@ -41,3 +41,26 @@ N개의 노드를 갖는 완전 이진 트리의 노드 번호는 루트가 1번
 #2 845
 #3 1801
 '''
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+T = int(input())
+
+for tc in range(1, T + 1):
+    N, M, L = map(int, input().split())
+    TREE = [0] * (N + 1) + [0]
+    for _ in range(M):
+        num1, num2 = map(int, input().split())
+        TREE[num1] = num2
+    for i in range(N // 2, 0, -1):
+        TREE[i] = TREE[i * 2] + TREE[i * 2 + 1]
+    # print(tree)
+    print(f'#{tc} {TREE[L]}')

@@ -28,26 +28,26 @@ N개의 정수가 주어지면 가장 큰 수, 가장 작은 수, 2번째 큰 �
 #3 98 3 97 9 88 17 75 18 71 21
 '''
 # 풀이
-Test_case = int(input())
-
-for tc in range(1, Test_case + 1):
-    N = int(input())
-    arr = list(map(int, input().split()))
-    for i in range(len(arr)):
-        max_idx = i
-        min_idx = i
-        for j in range(i, len(arr)): # 가장 큰 값
-            if arr[max_idx] < arr[j]:
-                max_idx = j
-        for k in range(i, len(arr)): # 가장 작은 값
-            if arr[min_idx] > arr[k]:
-                min_idx = k
-        if i % 2 == 0 or i == 0:
-            arr[i], arr[max_idx] = arr[max_idx], arr[i]
-        else:
-            arr[i], arr[min_idx] = arr[min_idx], arr[i]
-
-    print(f'#{tc}', *arr[:10])
+# Test_case = int(input())
+#
+# for tc in range(1, Test_case + 1):
+#     N = int(input())
+#     arr = list(map(int, input().split()))
+#     for i in range(len(arr)):
+#         max_idx = i
+#         min_idx = i
+#         for j in range(i, len(arr)): # 가장 큰 값
+#             if arr[max_idx] < arr[j]:
+#                 max_idx = j
+#         for k in range(i, len(arr)): # 가장 작은 값
+#             if arr[min_idx] > arr[k]:
+#                 min_idx = k
+#         if i % 2 == 0 or i == 0:
+#             arr[i], arr[max_idx] = arr[max_idx], arr[i]
+#         else:
+#             arr[i], arr[min_idx] = arr[min_idx], arr[i]
+#
+#     print(f'#{tc}', *arr[:10])
 
 # 내장함수 사용
 
@@ -66,6 +66,10 @@ for tc in range(1, Test_case + 1):
 #         print(k, end = ' ')
 #     print()
 
+# ----------------------------------------------------------------- #
+# 2023 - 02 - 24 복습
 
-
-
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+    arr = [list(map(int, input().split()))]

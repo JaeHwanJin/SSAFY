@@ -28,3 +28,19 @@
 #2 5
 #3 65
 '''
+
+import heapq
+
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+    TREE = list(map(int, input().split()))
+    LIST = []
+    for i in TREE:
+        heapq.heappush(LIST, i)
+
+    result = 0
+    while N > 1:
+        result += LIST[N // 2 - 1]
+        N = N // 2
+    print(f'#{tc} {result}')
