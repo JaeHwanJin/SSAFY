@@ -72,4 +72,18 @@ N개의 정수가 주어지면 가장 큰 수, 가장 작은 수, 2번째 큰 �
 T = int(input())
 for tc in range(1, T + 1):
     N = int(input())
-    arr = [list(map(int, input().split()))]
+    arr = list(map(int, input().split()))
+    for i in range(len(arr)):
+        for j in range(1, len(arr)):
+            if i > j:
+                i, j = j, i
+    print(arr)
+    result = []
+    arr1 = arr[0: N // 2]
+    arr2 = arr[N // 2: N]
+    for i in range(len(arr1)):
+        result.append(arr2[len(arr2) - i - 1])
+        result.append(arr1[i])
+    # print(f'#{tc}', *result)
+
+    # print(f'')
