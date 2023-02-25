@@ -33,5 +33,16 @@ sys.stdin = open('Magnetic.txt', 'r')
 
 for tc in range(1, 11):
     N = int(input())
-    arr = [list(map(int, input().split())) for _ in range(N)]
-    pprint(arr)
+    mag = [list(map(int, input().split())) for _ in range(N)]
+    cnt = 0
+    for i in range(N):
+        join = 0
+        for j in range(N):
+            if mag[j][i] == 1 and join == 0:
+                join = 1
+            elif mag[j][i] == 2 and join == 1:
+                join = 0
+                cnt += 1
+    print(f'#{tc} {cnt}')
+
+
