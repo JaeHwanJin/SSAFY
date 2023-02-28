@@ -45,3 +45,27 @@ for tc in range(1, T + 1):
             result += str(mod)
 
     print(f'#{tc} {result}')
+
+# N진수 -> 10진수
+string = input() # N진수를 문자열로 받았다..
+print(int(string, 6))
+
+# 10진수 -> N-진수...
+def convert(num, N):
+    s = ''
+    t = '0123456789ABCDEF'
+
+    # num의 값이 0이 될때까지 반복
+    while num > 0:
+        # 몫과 나머지
+        num, tmp = divmod(num, N)
+        s += t[tmp]
+    # 다시 역순으로 뒤집는다
+    s = s[::-1]
+    return s
+
+
+print(convert(149, 2))  # 10010101
+print(convert(149, 8))  # 225
+print(convert(149, 3))
+print(convert(149, 16))  # 95
