@@ -27,6 +27,7 @@ ALAKIR ALEXSTRASZA DR-BOOM LORD-JARAXXUS AVIANA
 #2 JACK KING QUEEN ACE
 #3 ALAKIR LORD-JARAXXUS ALEXSTRASZA AVIANA DR-BOOM
 '''
+<<<<<<< HEAD
 
 T = int(input())
 for tc in range(1, T + 1):
@@ -59,3 +60,40 @@ for tc in range(1, T + 1):
             break
 
     print(f'#{tc}', *result)
+=======
+# 1회차 풀이
+# T = int(input())
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     card = list(map(str, input().split()))
+#     # print(card)
+#     A = []
+#     B = []
+#     result = []
+#     # for i in range(N):
+#     if N % 2 == 0:
+#         for i in range(N // 2):
+#             a = card.pop(0)
+#             A.append(a)
+#         for i in range(N // 2):
+#             b = card.pop(0)
+#             B.append(b)
+#     else:
+#         for i in range(N // 2 + 1):
+#             a = card.pop(0)
+#             A.append(a)
+#         for i in range(N // 2):
+#             b = card.pop(0)
+#             B.append(b)
+#     while True:
+#         try:
+#             result.append(A.pop(0))
+#             result.append(B.pop(0))
+#         except:
+#             break
+#
+#     print(f'#{tc}', *result)
+
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 2023 03 02 복습
+>>>>>>> origin/master

@@ -23,6 +23,7 @@
 #1 1
 #2 2
 '''
+# 1회차 풀이
 # T = int(input())
 #
 # for tc in range(1, T + 1):
@@ -35,4 +36,25 @@
 #             reset[i:] = num[i] * len(reset[i:]) # 다른 인덱스의 값을 리스트의 끝까지 추가
 #             cnt += 1    # 횟수 +1
 #     print(f'#{tc} {cnt}')
+# -----------------------------------------------------------------------------------------------------#
+# 2023 - 03 - 02 복습
+# 어려운점 X
+T = int(input())
+for tc in range(1, T + 1):
+    LS = list(map(int, input()))
+    OS = [0] * len(LS)
+    cnt = 0
+    for i in range(len(OS)):
+        if LS == OS:
+            break
+        else:
+            if LS[i] == OS[i]:
+                continue
+            else:
+                for j in range(i, len(OS)):
+                    OS[j] = LS[i]
+                cnt += 1
+    print(f'#{tc} {cnt}')
+
+
 
