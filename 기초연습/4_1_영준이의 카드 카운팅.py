@@ -52,7 +52,7 @@ for tc in range(1, T + 1):
             H_CNT += 1
         elif 'C' in NSL[j]:
             C_CNT += 1
-
+d
     ol = 0  # 겹치는 카드가 있는지 확인하기 위한 변수
     for k in range(len(NSL)):  # 겹치는 카드 확인
         for l in range(k + 1, len(NSL)):
