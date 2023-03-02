@@ -38,30 +38,44 @@ Better_Problem
 #2 1
 #3 0
 '''
+# 1회차 풀이
+# T = int(input())
+#
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     arr = [input() for _ in range(N)]
+#     new_arr = []
+#     # print(arr)
+#     cnt = 0
+#
+#     for i in range(N):
+#         new_arr.append(ord(arr[i][0]))
+#     for k in range(len(new_arr) - 1):
+#         for j in range(len(new_arr) - 1):
+#             if new_arr[j] > new_arr[j + 1]:
+#                 new_arr[j], new_arr[j + 1] = new_arr[j + 1], new_arr[j]
+#
+#     new_arr = list(set(new_arr))
+#
+#     for l in range(len(new_arr) - 1):
+#         if new_arr[l] + 1 == new_arr[l + 1]:
+#             cnt += 1
+#         elif new_arr[l] == 65:
+#             cnt += 1
+#     print(f'#{tc} {cnt}')
 
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 2023 03 02 복습
+# 문자를 정수로 정수를 문자로 확인해야할때 어떻게 할지 숙지
 T = int(input())
-
 for tc in range(1, T + 1):
     N = int(input())
-    arr = [input() for _ in range(N)]
-    new_arr = []
-    # print(arr)
+    Title = sorted(set([ord(input()[0]) for _ in range(N)])) # 순서를 검사하기 위해 유니코드 정수로 변한 후 중복값을 제거하고 정렬해줌.
     cnt = 0
-
-    for i in range(N):
-        new_arr.append(ord(arr[i][0]))
-    for k in range(len(new_arr) - 1):
-        for j in range(len(new_arr) - 1):
-            if new_arr[j] > new_arr[j + 1]:
-                new_arr[j], new_arr[j + 1] = new_arr[j + 1], new_arr[j]
-
-    new_arr = list(set(new_arr))
-
-    for l in range(len(new_arr) - 1):
-        if new_arr[l] + 1 == new_arr[l + 1]:
+    for i in range(len(Title) - 1):
+        if Title[i] == 65:  # A로 시작하면 연속된 제목이 없더라도 기본으로 1회 사용가능
             cnt += 1
-        elif new_arr[l] == 65:
+        elif Title[i] + 1 == Title[i + 1]:   # 인접한 값끼리 비교하여 연속된다면 cnt 1씩 증가
             cnt += 1
+
     print(f'#{tc} {cnt}')
-
-
