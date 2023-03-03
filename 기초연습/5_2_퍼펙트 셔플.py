@@ -61,4 +61,30 @@ ALAKIR ALEXSTRASZA DR-BOOM LORD-JARAXXUS AVIANA
 #     print(f'#{tc}', *result)
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 2023 03 02 복습
+# 2023 03 03 복습
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+    deck = list(map(str, input().split()))
+    front, back = [], []
+    for i in range(len(deck)):
+        if len(deck) % 2 == 0:  # deck의 길이가 짝수일 때
+            if i < len(deck) // 2:
+                front.append(deck[i])
+            else:
+                back.append(deck[i])
+        else:  # deck의 길이가 홀수일 때
+            if i <= len(deck) // 2:
+                front.append(deck[i])
+            else:
+                back.append(deck[i])
+    cnt = 0
+    print(f'#{tc}', end=' ')
+    while True:  # 홀수일 때 front와 back의 길이가 다르기 때문에 예외처리
+        try:
+            print(front[cnt], end=' ')
+            print(back[cnt], end=' ')
+            cnt += 1
+        except:
+            break
+    print()

@@ -27,25 +27,39 @@ F의 경우 각각 다른 교착상태로 판단하여 2개의 교착상태로 �
 #부호와 함께 테스트 케이스의 번호를 출력하고, 공백 문자 후 교착 상태의 개수를 출력한다.
 '''
 # 1회차 풀이
-from pprint import pprint
-import sys
-
-sys.stdin = open('Magnetic.txt', 'r')
-
-
-for tc in range(1, 11):
-    N = int(input())
-    mag = [list(map(int, input().split())) for _ in range(N)]
-    cnt = 0
-    for i in range(N):
-        join = 0
-        for j in range(N):
-            if mag[j][i] == 1 and join == 0:
-                join = 1
-            elif mag[j][i] == 2 and join == 1:
-                join = 0
-                cnt += 1
-    print(f'#{tc} {cnt}')
+# from pprint import pprint
+# import sys
+#
+# sys.stdin = open('Magnetic.txt', 'r')
+#
+#
+# for tc in range(1, 11):
+#     N = int(input())
+#     mag = [list(map(int, input().split())) for _ in range(N)]
+#     cnt = 0
+#     for i in range(N):
+#         join = 0
+#         for j in range(N):
+#             if mag[j][i] == 1 and join == 0:
+#                 join = 1
+#             elif mag[j][i] == 2 and join == 1:
+#                 join = 0
+#                 cnt += 1
+#     print(f'#{tc} {cnt}')
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 2023 03 02 복습
+# 2023 03 03 복습
+#
+for tc in range(1, 11):
+    N = int(input())
+    Magnetic = [list(map(int, input().split())) for _ in range(N)]
+    cnt = 0 # 교착상태 개수
+    for i in range(N):  # S극과 N극이 서로 만날때만 cnt를 추가하기 위해 meet 변수를 만들어주고 규칙을 만들어준다.
+        meet = 0
+        for j in range(N):
+            if Magnetic[j][i] == 1 and meet == 0:
+                meet = 1
+            elif Magnetic[j][i] == 2 and meet == 1:
+                meet = 0
+                cnt += 1
+    print(f'#{tc} {cnt}')
