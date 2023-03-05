@@ -24,11 +24,27 @@
 21
 31
 '''
-day, ran = input().split()
-day, ran = int(day), int(ran)
-tem = list(map(int, input().split()))
-cnt = []
-for i in range(0, day - ran):
-    arr = tem[i:ran+i]
-    cnt.append(sum(arr))
-print(max(cnt))
+
+# 범위만큼 sum함수를 사용하니 시간초과 발생
+# day, ran = map(int, input().split())  # 날짜와 범위
+# tem = list(map(int, input().split()))  # 온도
+# MAX = 0
+# for i in range(0, day - ran):
+#     arr = tem[i:ran + i]
+#     if MAX < sum(arr):
+#         MAX = sum(arr)
+# print(MAX)
+
+day, ran = map(int, input().split())  # 날짜와 범위
+tem = list(map(int, input().split()))  # 온도
+SUM = sum(tem[:ran])  # 첫 번째 범위의 온도 합
+
+# 처음엔 MAX값을 0으로 했는데 실패
+# 온도 리스트에 음수값이 있는데 왜 0으로 했을까 ㅎㅎ..
+MAX = SUM
+for i in range(ran, day):
+    # 다음 온도 합은 직전 온도합 + 다음 범위 첫번째 값 + 직전 온도 합 연속된 날짜 첫번째 값
+    SUM = SUM + tem[i] - tem[i - ran]
+    if MAX < SUM:
+        MAX = SUM
+print(MAX)

@@ -32,7 +32,6 @@ for i in range(len(lst) - 1):
     if lst[i] <= lst[i + 1]:
         cnt1 += 1
         result.append(cnt1)
-
     else:
         cnt1 = 1
 

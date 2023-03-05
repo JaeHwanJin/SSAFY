@@ -111,3 +111,20 @@ N x N 배열 안의 숫자는 해당 영역에 존재하는 파리의 개체 수
 #         print(f'#{tc} {max_xcnt}')
 #     else:
 #         print(f'#{tc} {max_cnt}')
+
+# T = int(input())
+# for tc in range(1, T + 1):
+#     # N은 2차원 배열 크기 M은 스프레이의 세기
+#     N, M = map(int, input().split())
+#     fly = [list(map(int, input().split())) for _ in range(N)]
+#     mr = [0, 0, 1, -1]
+#     mc = [1, -1, 0, 0]
+#     for i in range(N):
+#         for j in range(N):
+#             for l in range(M):
+#                 p = 1
+#                 for k in range(4):
+#                     nr = i + mr[k] * p
+#                     nc = j + mc[k] * p
+
+
