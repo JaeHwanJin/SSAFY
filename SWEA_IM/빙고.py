@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 '''
 빙고 게임은 다음과 같은 방식으로 이루어진다.
 먼저 아래와 같이 25개의 칸으로 이루어진 빙고판에 1부터 25까지 자연수를 한 칸에 하나씩 쓴다
@@ -28,42 +27,35 @@
 예제 출력 1
 15
 '''
+# 빙고일 수 있는 경우를 모두 찾아 리스트로 만들고 사회자가 부르는 숫자를 하나하나 대입해 지워나가면서 빙고를 찾음.
 
-my_bingo = [list(map(int, input().split()))for _ in range(5)]
-for tc in range(5):
-    num = list(map(int, input().split()))
-=======
-'''
-빙고 게임은 다음과 같은 방식으로 이루어진다.
-먼저 아래와 같이 25개의 칸으로 이루어진 빙고판에 1부터 25까지 자연수를 한 칸에 하나씩 쓴다
-다음은 사회자가 부르는 수를 차례로 지워나간다. 예를 들어 5, 10, 7이 불렸다면 이 세 수를 지운 뒤 빙고판의 모습은 다음과 같다.
-차례로 수를 지워가다가 같은 가로줄, 세로줄 또는 대각선 위에 있는 5개의 모든 수가 지워지는 경우 그 줄에 선을 긋는다.
-이러한 선이 세 개 이상 그어지는 순간 "빙고"라고 외치는데, 가장 먼저 외치는 사람이 게임의 승자가 된다.
-철수는 친구들과 빙고 게임을 하고 있다. 철수가 빙고판에 쓴 수들과 사회자가 부르는 수의 순서가 주어질 때, 사회자가 몇 번째 수를 부른 후 철수가 "빙고"를 외치게 되는지를 출력하는 프로그램을 작성하시오.
-
-입력
-첫째 줄부터 다섯째 줄까지 빙고판에 쓰여진 수가 가장 위 가로줄부터 차례대로 한 줄에 다섯 개씩 빈 칸을 사이에 두고 주어진다. 여섯째 줄부터 열째 줄까지 사회자가 부르는 수가 차례대로 한 줄에 다섯 개씩 빈 칸을 사이에 두고 주어진다. 빙고판에 쓰여진 수와 사회자가 부르는 수는 각각 1부터 25까지의 수가 한 번씩 사용된다.
-
-출력
-첫째 줄에 사회자가 몇 번째 수를 부른 후 철수가 "빙고"를 외치게 되는지 출력한다.
-
-예제 입력 1
-11 12 2 24 10
-16 1 13 3 25
-6 20 5 21 17
-19 4 8 14 9
-22 15 7 23 18
-5 10 7 16 2
-4 22 8 17 13
-3 18 1 6 25
-12 19 23 14 21
-11 24 9 20 15
-
-예제 출력 1
-15
-'''
-
-my_bingo = [list(map(int, input().split()))for _ in range(5)]
-for tc in range(5):
-    num = list(map(int, input().split()))
->>>>>>> b2acc9c228201052bf05820050910e4f96064e7d
+r_bingo = [list(map(int, input().split())) for _ in range(5)]  # 세로 빙고 리스트
+c_bingo = list(map(list, zip(*r_bingo)))    # 열 빙고 리스트
+x_bingo1 = []   # 왼쪽 대각선 빙고
+x_bingo2 = []   # 오른쪽 대각선 빙고
+# X자 빙고
+for i in range(len(r_bingo)):
+    x_bingo1.append(r_bingo[i][i])
+    x_bingo2.append(r_bingo[i][4 - i])
+# 빙고 완전체
+bingo = r_bingo + c_bingo
+bingo.append(x_bingo1)
+bingo.append(x_bingo2)
+# 사회자가 부를 숫자
+mc_bingo = []
+for j in range(5):
+    mc_bingo += list(map(int, input().split()))
+speak = 0   # 사회자가 말한 횟수
+# print(mc_bingo)
+# print(bingo)
+for k in mc_bingo:
+    speak += 1
+    bingo_cnt = 0  # 빙고 횟수
+    for l in bingo:
+        if k in l:
+            l.remove(k)
+        if len(l) == 0: # 한줄이 완성 되면
+            bingo_cnt += 1
+    if bingo_cnt >= 3:
+        break
+print(speak)
