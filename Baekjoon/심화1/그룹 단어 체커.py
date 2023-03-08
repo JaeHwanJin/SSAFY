@@ -49,26 +49,27 @@ z
 
 # 첫번째 풀이 오답
 # 왜 오답인지 모르겠다... 하드코딩이긴하지만 맞는거같은데...
-N = int(input())
-result = 0
-for i in range(N):
-    word = list(map(str, input()))
-    check = []  # 떨어져서 나타나는지 확인하기 위한 리스트
-    cnt = 0
-    for j in range(len(word) - 1):
-        if word[j] != word[j + 1]:  # 인접한 문자끼리 같지 않을 경우 연속한 문자가 끝난것이기 때문에 check에 추가해준다.
-            check.append(word[j])
-            word.pop(j)  # 연속한문자가 끝나면 word에서 제거해준다
-            word.append('/')  # for문 index에러를 방지하기 위한 append
-            for k in range(len(check)):
-                if check[k] in word:  # 연속한 문자가 끝났는데 word에 있다면 그룹문자가 아니다.
-                    cnt += 1
-        else:
-            word.pop(j)
-            word.append('/')
-    if cnt == 0:
-        result += 1
-print(result)
+# 반례 abcb abcbdb
+# N = int(input())
+# result = 0
+# for i in range(N):
+#     word = list(map(str, input()))
+#     check = []  # 떨어져서 나타나는지 확인하기 위한 리스트
+#     cnt = 0
+#     for j in range(len(word) - 1):
+#         if word[j] != word[j + 1]:  # 인접한 문자끼리 같지 않을 경우 연속한 문자가 끝난것이기 때문에 check에 추가해준다.
+#             check.append(word[j])
+#             word.pop(j)  # 연속한문자가 끝나면 word에서 제거해준다
+#             word.append('/')  # for문 index에러를 방지하기 위한 append
+#             for k in range(len(check)):
+#                 if check[k] in word:  # 연속한 문자가 끝났는데 word에 있다면 그룹문자가 아니다.
+#                     cnt += 1
+#         else:
+#             word.pop(j)
+#             word.append('/')
+#     if cnt == 0:
+#         result += 1
+#     print(result)
 
 # 두번째 풀이 정답
 # 슬라이싱을 잘 활용하고 범위를 잘 생각하자
