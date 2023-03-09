@@ -66,26 +66,68 @@ N개의 수가 주어졌을 때, 네 가지 기본 통계값을 구하는 프로
 0
 1
 '''
+
+### 1번째 풀이
+# import sys
+#
+# num = []
+# for inp in range(int(sys.stdin.readline().strip())):
+#     num.append(int(sys.stdin.readline().strip()))  # 입력 값 리스트에 추가
+#
+# num.sort()  # 리스트 오름차순 정렬
+#
+# print(round(sum(num) / len(num)))  # 산술평균
+# print(num[len(num) // 2])  # 중앙값
+#
+# mode = []  # 숫자와 빈도수를 담을 list
+# for i in range(len(num)):
+#     mode.append((num[i], num.count(num[i])))
+# mode = list(set(mode))  # 중복값 제거
+# mode = sorted(mode, key=lambda x: x[0])  # N개의 수 들이 각각 몇번 나타나는지 기준으로 정렬
+# MAX = max(mode, key=lambda x: x[0])[1]  # 빈도수가 가장 높은 값
+# cnt = 0
+# result = []  # 최빈값을 담을 list
+# for x, y in mode:
+#     if y == MAX:
+#         cnt += 1
+#         result.append((x, y))  # 최빈값이 다수 일 경우
+# if cnt == 1:
+#     print(MAX)
+# else:
+#     print(result[1][0])
+#
+# print(max(num) - min(num))  # 범위 : 최댓값과 최솟값의 차이
+
+# 시간초과로인해 실패
+# 최빈값을 구하는데 너무 많음 함수를 사용했다.
+
 import sys
-import math
 
 num = []
 for inp in range(int(sys.stdin.readline().strip())):
     num.append(int(sys.stdin.readline().strip()))  # 입력 값 리스트에 추가
 
 num.sort()  # 리스트 오름차순 정렬
-# print(num)
 
-
-print(round(sum(num) / len(num)))  # 산술평균 반올림
+print(round(sum(num) / len(num)))  # 산술평균
 print(num[len(num) // 2])  # 중앙값
 
-mode = []
-for i in range(len(num)):
-    mode = sorted(list(set(mode)))
-    mode.append((num[i], num.count(num[i])))
-mode = sorted(mode, key=lambda x: x[0])
-for j in range(len(mode)):
-    if
+mode = dict()
+for i in num:
+    if i in mode:
+        mode[i] += 1
+    else:
+        mode[i] = 1
+MAX = max(mode.values())  # 최빈값
+MAX_dic = []  # 최빈값을 저장 할 list
+
+for j in mode:
+    if MAX == mode[j]:
+        MAX_dic.append(j)
+
+if len(MAX_dic) > 1:  # 최빈값이 여러개라면
+    print(MAX_dic[1])  # 두번째로 작은 값
+else:
+    print(MAX_dic[0])   # 최빈값
 
 print(max(num) - min(num))  # 범위 : 최댓값과 최솟값의 차이

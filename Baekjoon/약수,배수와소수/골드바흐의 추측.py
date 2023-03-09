@@ -23,40 +23,51 @@
 5 5
 5 11
 '''
+
+
+# 시간초과 실패실패...
+# T = int(input())
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     pn = []  # N 이하의 소수를 담을 list
+#     # 소수 찾기 for문
+#     for i in range(2, N + 1):
+#         cnt = 0
+#         for l in range(2, int(i ** 0.5) + 1):
+#             if i % l == 0:
+#                 cnt += 1
+#         if cnt == 0 :
+#             pn.append(i)
+#     result = 10000 # 골드바흐의 파티션 중 차이가 가장 작은 것을 담을 변수
+#     x, y = 0, 0 # 차이가 가장 작은 소수 2개를 담을 변수
+#     for j in range(len(pn)):
+#         for k in range(j, len(pn)):
+#             if pn[j] + pn[k] == N:
+#                 if result > pn[k] - pn[j]:
+#                     result = pn[k] - pn[j]
+#                     x, y = pn[j], pn[k]
+#     print(x, y)
+
+# 소수인지 확인하는 함수
+def prime(n):
+    if n == 1:
+        return False
+    # n이 n제곱은 이하의 수로 나누어 떨어지지 않으면 그 이상의 수로도 나누어 떨어지지 않는다.
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
 T = int(input())
-for tc in range(1, T + 1):
-    N = int(input())
-    # 골든바흐의 파티션을 출력 (오름차순)
-    # 골든바흐의 파티션이란 짝수N을 두 소수의 합으로 나타내는 표현을 뜻한다.
-    pn = []  # N 이하의 소수
-    result = []
-    # 소수 찾기 for문
-    # for i in range(1, N + 1):
-    #     cnt = 0
-    #     for l in range(1, i + 1):
-    #         if i % l == 0:
-    #             cnt += 1
-    #     if cnt == 2:
-    #         pn.append(i)
-    def prime_list(n):
-        # 에라토스테네스의 체 초기화: n개 요소에 True 설정(소수로 간주)
-        sieve = [True] * n
+for tc in range(T):
+    num = int(input())
+    pn1, pn2 = num // 2, num // 2   # num을 반으로 나누고 각 각 +1 -1 해주면서 두 수가 소수인지 확인
+    while pn1 > 0:
+        if prime(pn1) and prime(pn2):
+            print(pn1, pn2)
+            break
+        else:
+            pn1 -= 1
+            pn2 += 1
 
-        m = int(n ** 0.5)
-        for i in range(2, m + 1):
-            if sieve[i] == True:  # i가 소수인 경우
-                for j in range(i + i, n, i):  # i이후 i의 배수들을 False 판정
-                    sieve[j] = False
-
-        # 소수 목록 산출
-        return [i for i in range(2, n) if sieve[i] == True]
-    print(pn)
-    result = 10000
-    x, y = 0, 0
-    for j in range(len(pn)):
-        for k in range(j, len(pn)):
-            if pn[j] + pn[k] == N:
-                if result > pn[k] - pn[j]:
-                    result = pn[k] - pn[j]
-                    x, y = pn[j], pn[k]
-    print(x, y)

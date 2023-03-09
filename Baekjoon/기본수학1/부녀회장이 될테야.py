@@ -22,3 +22,12 @@
 10
 '''
 
+T = int(input())
+for tc in range(T):
+    floor = int(input())
+    room = int(input())
+    apt = [x for x in range(1, room + 1)] # 0층 리스트
+    for i in range(floor):  # 층 수 만큼 반복
+        for j in range(1, room):
+            apt[j] += apt[j-1]  # 층별 각 호실의 사람 수를 변경
+    print(apt[-1])
