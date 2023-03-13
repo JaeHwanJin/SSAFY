@@ -26,7 +26,7 @@ n이 주어졌을 때, n번째 피보나치 수를 구하는 프로그램을 작
 
 def fi(num):
     if num <= 1:
-        return 1
+        return num
     return fi(num-1) + fi(num-2)
 
 print(fi(int(input())))
