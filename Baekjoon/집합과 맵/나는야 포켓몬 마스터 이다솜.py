@@ -63,4 +63,4 @@ for inp in range(1, N):
     poket.append([str(inp), input()])
 
 for inp in range(M):
-    if input()
+    if input() 

@@ -1,8 +1,6 @@
-def recursive_function(num):
-    if num == 101:
-        return
-    else:
-        print(num, '번째 재귀함수에서', num+1, '번째 재귀함수를 호출합니다.')
-        recursive_function(num + 1)
-        print(num, '번째 재귀함수를 종료합니다.')
-recursive_function(1)
+a, b = map(int, input().split())
+
+if a - (a * (0.01*b)) >= 100:
+    print(0)
+else:
+    print(1)
