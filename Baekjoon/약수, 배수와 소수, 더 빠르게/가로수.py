@@ -33,6 +33,8 @@
 예제 출력 2
 5
 '''
+import sys
 
+N = int(input())
+for n in range(N):
 
-다시 풀어보도록
