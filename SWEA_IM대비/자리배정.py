@@ -50,7 +50,7 @@ if my_seat > C*R :
 dx = [0,1,0,-1]
 dy = [-1,0,1,0]
 
-#그리드 만들기
+#그리디 만들기
 grid = [[0]*C for _ in range(R)]
 direction = x= y = 0
 
