@@ -13,13 +13,11 @@
 1은 최대 9개 까지 연속할 수 있다. 이외의 입력은 주어지지 않는다.
 
 [입력]
-
 - 첫줄에 전체 테스트케이스의 개수 T가 주어진다.
 - 각 테스트케이스의 첫 줄에 16진수의 길이 N이 주어진다. 다음 줄에 길이 N의 16진수 문자열이 주어진다. (2 ≤ N ≤ 20)
 
 [출력]
 - 각 테스트 케이스의 번호를 ‘#’과 함께 출력하고, 빈칸에 이어 답을 출력한다.
-
 
 입력
 3
@@ -30,9 +28,20 @@ FF
 4
 5BBD
 
-sample_input.txt
 출력
 #1 3
 #2 8
 #3 4
 '''
+
+for tc in range(1, int(input()) + 1):
+    N = int(input())
+    BIN = bin(int(input(), 16))
+    cnt, MAX = 0, 0
+    for i in BIN:
+        if i == '1':
+            cnt += 1
+        else:
+            MAX = max(cnt, MAX)
+            cnt = 0
+    print(f'#{tc} {max(cnt, MAX)}')

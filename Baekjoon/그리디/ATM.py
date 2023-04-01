@@ -18,17 +18,29 @@ ATM
 예제 출력 1
 32
 '''
-n = int(input()) # 사람 수
-arr = list(map(int,input().split())) # 인출 시간
-arr.sort() # 정렬
+#n = int(input()) # 사람 수
+#arr = list(map(int,input().split())) # 인출 시간
+#arr.sort() # 정렬
 
-result = 0
-print(arr)
-for i in range(1,n):
-    arr[i] += arr[i-1] # 인출 시간 갱신
+#result = 0
+#print(arr)
+#for i in range(1,n):
+#   arr[i] += arr[i-1] # 인출 시간 갱신
 
-print(sum(arr))
-#
+#print(sum(arr))
+
+
+n = int(input())
+s = list(map(int, input().split()))
+num = 0
+s.sort()
+for i in range(n):
+    for j in range(i + 1):
+        # print(s)
+        num += s[j]
+print(num)
+
+
 # 1 2 3 4 5
 # 1
 # 3
