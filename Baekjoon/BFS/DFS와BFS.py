@@ -37,4 +37,38 @@
 
 from collections import deque
 
+
+def DFS(V):
+    d_visited[V] = True
+    print(V, end=' ')
+    for node in range(1, N + 1):
+        if not d_visited[node] and graph[V][node]:
+            DFS(node)
+
+
+def BFS(V):
+    q = deque([V])
+    b_visited[V] = True
+    while q:
+        root = q.popleft()
+        print(root, end=' ')
+        for node in range(1, N + 1):
+            if not b_visited[node] and graph[root][node]:
+                q.append(node)
+                b_visited[node] = True
+
+
 N, M, V = map(int, input().split())
+
+graph = [[False] * (N + 1) for _ in range(N + 1)]  # 노드와 간선 표현
+
+for _ in range(M):
+    x, y = map(int, input().split())
+    graph[x][y] = 1
+    graph[y][x] = 1
+print(graph)
+d_visited = [0] * (N + 1)  # 방문 처리
+b_visited = [0] * (N + 1)  # 방문 처리
+DFS(V)
+print()
+BFS(V)
