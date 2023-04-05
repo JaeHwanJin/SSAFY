@@ -21,10 +21,10 @@
 '''
 
 
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return n * fibonacci(n - 1)
+def fibonacci(N):
+    if N <= 1:
+        return 1
+    return N * fibonacci(N - 1)
 
 
-print(fibonacci(10))
+print(fibonacci(int(input())))
