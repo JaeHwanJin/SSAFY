@@ -36,6 +36,7 @@ error
 [1,2,3,5,8]
 error
 '''
+
 from collections import deque
 import sys
 
@@ -47,14 +48,40 @@ for tc in range(T):
     STR = input().strip()
     P = int(input())
     q = deque(input().strip()[1:-1].split(','))
+    e = 0  # error 발생횟수
+    cnt = 0 # R 횟수
 
-    if P == 0:
+    if P == 0 :
         q = deque()
 
     for i in STR:
         if i == 'R':
-            q.reverse()
+            cnt += 1
         else:
-            q.popleft()
-    print(q)
-
+            if len(q) == 0: # 빈 q에 pop하면 에러가 뜨기 때문에
+                print('error')
+                break
+            else:
+                if cnt % 2 == 0:    # cnt가 짝수이면 배열을 뒤집을 필요 X
+                    q.popleft()
+                else:
+                    q.pop()
+            # if cnt % 2 == 0:
+            #     cnt = 0
+            #     try:
+            #         q.popleft()
+            #     except:
+            #         e = 1
+            # else:
+            #     cnt = 0
+            #     try:
+            #         q.reverse()
+            #         q.popleft()
+            #     except:
+            #         e = 1
+    else:
+        if cnt % 2 == 0:
+            print('[' + ','.join(q) + ']')
+        else :
+            q.reverse()
+            print('[' + ','.join(q) + ']')
