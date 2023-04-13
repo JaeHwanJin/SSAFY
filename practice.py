@@ -1,44 +1,30 @@
-import sys
+from collections import deque
 
 
-def get_pi(pattern):
-    length = len(pattern)
-    pi = [0] * length
-    j = 0
+def dfs(graph, v, visited):
+    # v는 시작위치
+    visited[v] = True
+    print(v, end=' ')
 
-    for i in range(1, length):
-        while j > 0 and pattern[i] != pattern[j]:
-            j = pi[j - 1]
-        if pattern[i] == pattern[j]:
-            j += 1
-            pi[i] = j
-
-    return pi
+    # 현재 노드와 연결된 노드를 재귀적으로 호출
+    for i in graph[v]:
+        if not visited[i]:
+            dfs(graph, i, visited)
 
 
-def kmp(text, pattern):
-    pi = get_pi(pattern)
-    t_len, p_len = len(text), len(pattern)
-    j = 0
-    result = []
+graph = [
+    [],
+    [2, 3, 7],
+    [1, 4, 6],
+    [1, 5, 7],
+    [2, 6],
+    [3, 7],
+    [2, 4],
+    [1, 3]
+]
 
-    for i in range(t_len):
-        while j > 0 and text[i] != pattern[j]:
-            j = pi[j - 1]
-        if text[i] == pattern[j]:
-            if j == p_len - 1:
-                result.append(i - p_len + 2)
-                j = pi[j]
-            else:
-                j += 1
+# 각 노드가 방문한 정보를 리스트 자료형으로 표현
+visited = [False] * 9
 
-    return result
-
-
-text = sys.stdin.readline().rstrip()
-pattern = sys.stdin.readline().rstrip()
-
-result = kmp(text, pattern)
-
-print(len(result))
-print(*result)
+print("방문순서")
+dfs(graph, 1, visited)

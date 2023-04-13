@@ -44,21 +44,36 @@
 -1
 '''
 
-# 위의 그래프를 예시로 삼아서 인접 리스트 방식으로 표현했습니다!
-graph = [[0],
-    [2, 5, 9],
-    [1, 3],
-    [2, 4],
-    [3],
-    [1, 6, 8],
-    [5, 7],
-    [6],
-    [5],
-    [1, 10],
-    [9]
-]
-visited = []
+N = int(input())
+a, b = map(int, input().split())  # 촌수를 계산해야 하는 서로 다른 사람
+M = int(input())  # 부모 자식들 간의 관계의 개수
+graph = [[] for _ in range(N + 1)]
+for i in range(M):
+    x, y = map(int, input().split())
+    graph[x].append(y)
+    graph[y].append(x)
+visited = [0] * (N + 1)
 
-# print(graph)
+cnt = 0
+result = []
 
-def DFS()
+def DFS(start, end):
+    global cnt
+    visited[start] = 1
+    cnt += 1
+    if start == end:
+        result.append(cnt)
+    for i in graph[start]:
+        if not visited[i]:
+            DFS(i, end)
+            cnt -= 1
+
+
+DFS(a, b)
+
+if len(result) == 0:
+    print(-1)
+else:
+    print(result[0] - 1)
+# [[], [2, 3], [1, 7, 8, 9], [1], [5, 6], [4], [4], [2], [2], [2]]
+# [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
