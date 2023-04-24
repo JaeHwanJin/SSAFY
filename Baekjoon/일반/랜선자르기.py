@@ -24,20 +24,22 @@ K는 1이상 10,000이하의 정수이고, N은 1이상 1,000,000이하의 정�
 200
 '''
 
+import sys
+
 K, N = map(int, input().split())
-tree = list(map(int, input().split()))
+lan = [int(sys.stdin.readline()) for _ in range(K)]
+start, end = 1, max(lan)  # 이분탐색 처음과 끝위치
 
-left, right = 1, max(tree)
+while start <= end:  # 적절한 랜선의 길이를 찾는 알고리즘
+    mid = (start + end) // 2  # 중간 위치
+    lines = 0  # 랜선 수
+    for i in lan:
+        lines += i // mid  # 분할 된 랜선 수
 
-while left <= right:
-    cnt = 0
-    mid = (left + right) // 2
-    for i in tree:
-        if i >= mid:
-            cnt += i - mid
+    if lines >= N:  # 랜선의 개수가 분기점
+        start = mid + 1
+    else:
+        end = mid - 1
+print(end)
 
-        if cnt >= N:
-            left = mid + 1
-        else:
-            right = mid - 1
-print(right)
+
