@@ -57,19 +57,17 @@ visited = [0] * (N + 1)
 cnt = 0
 result = []
 
-def DFS(start, end):
-    global cnt
+def DFS(start, end, cnt):
     visited[start] = 1
     cnt += 1
     if start == end:
         result.append(cnt)
     for i in graph[start]:
         if not visited[i]:
-            DFS(i, end)
-            cnt -= 1
+            DFS(i, end, cnt)
 
 
-DFS(a, b)
+DFS(a, b, cnt)
 
 if len(result) == 0:
     print(-1)
