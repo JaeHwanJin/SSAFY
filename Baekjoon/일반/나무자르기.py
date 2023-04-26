@@ -35,7 +35,7 @@ while start <= end:  # 적절한 벌목 높이를 찾는 알고리즘
     mid = (start + end) // 2
 
     log = 0  # 벌목된 나무 총합
-    print(tree)
+    # print(tree)
     for i in tree:
         if i >= mid:
             log += i - mid
