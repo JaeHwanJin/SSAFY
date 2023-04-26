@@ -16,18 +16,20 @@ N개의 정수로 이루어진 수열이 있을 때, 크기가 양수인 부분�
 
 N, S = map(int, input().split())
 result = list(map(int, input().split()))
+lst = []
 cnt = 0
 
 
-def back():
+def back(start):
     global cnt
-    if sum(result) == S:
+    print(lst)
+    if sum(lst) == S and len(lst) > 1:
         cnt += 1
-        return
-    for i in result:
-        result.append(i)
-        back()
-        result.pop()
+    for i in range(start, len(result)):
+        # print(i)
+        lst.append(result[i])
+        back(i + 1)
+        lst.pop()
 
-
+back(0)
 print(cnt)
