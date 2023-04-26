@@ -14,3 +14,20 @@ N개의 정수로 이루어진 수열이 있을 때, 크기가 양수인 부분�
 1
 '''
 
+N, S = map(int, input().split())
+result = list(map(int, input().split()))
+cnt = 0
+
+
+def back():
+    global cnt
+    if sum(result) == S:
+        cnt += 1
+        return
+    for i in result:
+        result.append(i)
+        back()
+        result.pop()
+
+
+print(cnt)
