@@ -2,6 +2,8 @@
 N개의 자연수와 자연수 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.
 
 N개의 자연수 중에서 M개를 고른 수열
+고른 수열은 비내림차순이어야 한다.
+길이가 K인 수열 A가 A1 ≤ A2 ≤ ... ≤ AK-1 ≤ AK를 만족하면, 비내림차순이라고 한다.
 입력
 첫째 줄에 N과 M이 주어진다. (1 ≤ M ≤ N ≤ 8)
 
@@ -24,37 +26,32 @@ N개의 자연수 중에서 M개를 고른 수열
 예제 출력 2
 1 7
 1 9
-7 1
 7 9
-9 1
-9 7
 9 9
 예제 입력 3
 4 4
-1 1 1 1
+1 1 2 2
 예제 출력 3
-1 1 1 1
+1 1 2 2
 '''
+
+def back(start):
+    if len(lst) == M:
+        print(*lst)
+        return
+    exp_num = 0
+    for i in range(start, N):
+        if visited[i] == 0 and exp_num != nums[i]:
+            lst.append(nums[i])
+            visited[i] = 1
+            exp_num = nums[i]
+            back(i+1)
+            lst.pop()
+            visited[i] = 0
 
 N, M = map(int, input().split())
 nums = list(map(int, input().split()))
 nums.sort()
 lst = []
 visited = [0] * N
-
-def back():
-    if len(lst) == M:
-        print(*lst)
-        return
-    exp_num = 0
-    for i in range(N):
-        if visited[i] == 0 and nums[i] != exp_num:
-            visited[i] = 1
-            exp_num = nums[i]
-            lst.append(nums[i])
-            back()
-            lst.pop()
-            visited[i] = 0
-
-back()
-
+back(0)

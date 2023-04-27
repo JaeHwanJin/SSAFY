@@ -26,7 +26,6 @@ def back(start):
     if sum(lst) == S and len(lst) > 1:
         cnt += 1
     for i in range(start, len(result)):
-        # print(i)
         lst.append(result[i])
         back(i + 1)
         lst.pop()

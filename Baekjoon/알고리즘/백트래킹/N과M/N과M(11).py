@@ -2,8 +2,9 @@
 N개의 자연수와 자연수 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.
 
 N개의 자연수 중에서 M개를 고른 수열
+같은 수를 여러 번 골라도 된다.
 입력
-첫째 줄에 N과 M이 주어진다. (1 ≤ M ≤ N ≤ 8)
+첫째 줄에 N과 M이 주어진다. (1 ≤ M ≤ N ≤ 7)
 
 둘째 줄에 N개의 수가 주어진다. 입력으로 주어지는 수는 10,000보다 작거나 같은 자연수이다.
 
@@ -22,23 +23,42 @@ N개의 자연수 중에서 M개를 고른 수열
 4 2
 9 7 9 1
 예제 출력 2
+1 1
 1 7
 1 9
 7 1
+7 7
 7 9
 9 1
 9 7
 9 9
 예제 입력 3
 4 4
-1 1 1 1
+1 1 2 2
 예제 출력 3
 1 1 1 1
+1 1 1 2
+1 1 2 1
+1 1 2 2
+1 2 1 1
+1 2 1 2
+1 2 2 1
+1 2 2 2
+2 1 1 1
+2 1 1 2
+2 1 2 1
+2 1 2 2
+2 2 1 1
+2 2 1 2
+2 2 2 1
+2 2 2 2
 '''
 
 N, M = map(int, input().split())
 nums = list(map(int, input().split()))
+nums = list(set(nums))
 nums.sort()
+
 lst = []
 visited = [0] * N
 
@@ -46,15 +66,8 @@ def back():
     if len(lst) == M:
         print(*lst)
         return
-    exp_num = 0
-    for i in range(N):
-        if visited[i] == 0 and nums[i] != exp_num:
-            visited[i] = 1
-            exp_num = nums[i]
-            lst.append(nums[i])
-            back()
-            lst.pop()
-            visited[i] = 0
-
+    for i in range(len(nums)):
+        lst.append(nums[i])
+        back()
+        lst.pop()
 back()
-
