@@ -26,12 +26,23 @@ n개의 정수로 이루어진 임의의 수열이 주어진다.
 -1
 '''
 
-N = int(input())
-nums = list(map(int, input().split()))
+# N = int(input())
+# nums = list(map(int, input().split()))
+# sums = [0] * N
+# sums[0] = nums[0]
+# for i in range(N - 1):
+#     sums[i] = max(sums[i] + nums[i + 1], nums[i+1])
+# print(max(sums))
 
-for i in range(1, N):
+n = int(input())
+a = list(map(int, input().split()))
+sum = [a[0]]
+for i in range(len(a) - 1):
+    sum.append(max(sum[i] + a[i + 1], a[i + 1]))
+    print(sum[i] + a[i + 1], a[i + 1])
 
+print(max(sum))
 
 # 10   -4    3    1    5    6    -35    12    21     -1
-#
+
 # 10    6    9    10   15  21    -14   -2    19     18
