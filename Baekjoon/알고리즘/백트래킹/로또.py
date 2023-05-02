@@ -65,3 +65,4 @@ N = nums.pop(0)
 result = []
 def lotto():
     if len(result) == len(nums):
+        pass
