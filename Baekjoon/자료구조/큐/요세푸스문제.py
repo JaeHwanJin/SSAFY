@@ -17,14 +17,14 @@ N과 K가 주어지면 (N, K)-요세푸스 순열을 구하는 프로그램을 �
 <3, 6, 2, 7, 5, 1, 4>
 '''
 
-# N, K = map(int, input().split())
-# q = [i for i in range(1, N + 1)]
-# result = []
-# while len(q) > 0:
-#     for i in range(K-1):
-#         q.append(q.pop(0))
-#     result.append(q.pop(0))
-# print('<' + ', '.join(map(str, result)) + '>')
+N, K = map(int, input().split())
+q = [i for i in range(1, N + 1)]
+result = []
+while len(q) > 0:
+    for i in range(K-1):
+        q.append(q.pop(0))
+    result.append(q.pop(0))
+print('<' + ', '.join(map(str, result)) + '>')
 
 from collections import deque
 

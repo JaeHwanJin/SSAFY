@@ -20,5 +20,44 @@
 1 4 5 3 2
 '''
 
-N = int(input())
-balloon = list(map(int, input().split()))
+# import sys
+# from collections import deque
+#
+# input = sys.stdin.readline
+#
+# N = int(input())
+# nums = deque(map(int, input().split()))
+# result = []
+# pung = deque(i for i in range(1, N + 1))
+#
+# while len(pung) > 0:
+#     result.append(pung.popleft())
+#     num = nums.popleft()
+#     if num > 0:
+#         pung.rotate(num - 1)
+#         nums.rotate(num - 1)
+#     else:
+#         pung.rotate(-num)
+#         nums.rotate(-num)
+# print(result)
+
+n = int(input())
+idx = 0
+result = []
+
+data = list(map(int, input().split()))
+index = [x for x in range(1, n + 1)]
+
+temp = data.pop(idx)
+result.append(index.pop(idx))
+
+while data:
+    if temp < 0:
+        idx = (idx + temp) % len(data)
+    else:
+        idx = (idx + (temp - 1)) % len(data)
+    temp = data.pop(idx)
+    result.append(index.pop(idx))
+
+for r in result:
+    print(r, end=' ')
