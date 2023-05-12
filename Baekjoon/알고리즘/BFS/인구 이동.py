@@ -64,7 +64,7 @@ def bfs(a, b):
 
 
 result = 0
-while 1:
+while True:
     visited = [[0] * (n + 1) for _ in range(n + 1)]
     flag = 0
     for i in range(n):
@@ -83,4 +83,5 @@ while 1:
     if flag == 0:
         break
     result += 1
+    []
 print(result)
